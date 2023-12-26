@@ -1,5 +1,6 @@
 package com.recycleme.frame.masyarakat;
 
+import com.recycleme.actionListener.masyarakat.MasyarakatHapus;
 import com.recycleme.actionListener.masyarakat.MasyarakatInput;
 import com.recycleme.dao.MasyarakatDao;
 import com.recycleme.model.masyarakat.Masyarakat;
@@ -14,6 +15,7 @@ public class MasyarakatFrame extends JFrame {
 
     private JButton buttonInputMasyarakat;
     private JButton buttonEditMasyarakat;
+    private JButton buttonSetujui;
     private JButton buttonDeleteMasyarakat;
 
     private JTable tableMasyarakat;
@@ -24,11 +26,11 @@ public class MasyarakatFrame extends JFrame {
     private MasyarakatDao masyarakatDao;
     private MasyarakatTableModel tableModel;
     private MasyarakatInput masyarakatInput;
+    private MasyarakatHapus masyarakatHapus;
 
     public MasyarakatFrame(MasyarakatDao masyarakatDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(1000, 500);
-
         this.setLayout(null);
 
         this.labelTitle = new JLabel("Daftar Semua Masyarakat");
@@ -41,12 +43,17 @@ public class MasyarakatFrame extends JFrame {
         this.buttonEditMasyarakat = new JButton("Edit Masyarakat");
         this.buttonEditMasyarakat.setBounds(250, 50, 150, 30);
 
+        this.buttonSetujui = new JButton("Setujui Registrasi");
+        this.buttonSetujui.setBounds(450, 50, 150, 30);
+
         this.buttonDeleteMasyarakat = new JButton("Delete Masyarakat");
-        this.buttonDeleteMasyarakat.setBounds(450, 50, 150, 30);
+        this.buttonDeleteMasyarakat.setBounds(650, 50, 150, 30);
 
         this.masyarakatInput = new MasyarakatInput(this);
+        this.masyarakatHapus = new MasyarakatHapus(this, masyarakatDao);
 
         this.buttonInputMasyarakat.addActionListener(masyarakatInput);
+        this.buttonDeleteMasyarakat.addActionListener(masyarakatHapus);
 
         this.masyarakatDao = masyarakatDao;
         this.masyarakatList = masyarakatDao.findAll();
@@ -61,12 +68,29 @@ public class MasyarakatFrame extends JFrame {
         this.add(labelTitle);
         this.add(buttonInputMasyarakat);
         this.add(buttonEditMasyarakat);
+        this.add(buttonSetujui);
         this.add(buttonDeleteMasyarakat);
         this.add(scrollPane);
     }
 
+    public int getSelectedMasyarakatId() {
+        return tableMasyarakat.getSelectedRow();
+    }
+
     public JButton getButtonInputMasyarakat() {
         return buttonInputMasyarakat;
+    }
+
+    public JButton getButtonEditMasyarakat() {
+        return buttonEditMasyarakat;
+    }
+
+    public JButton getButtonSetujui() {
+        return buttonSetujui;
+    }
+
+    public JButton getButtonDeleteMasyarakat() {
+        return buttonDeleteMasyarakat;
     }
 
     public void showInputMasyarakatFrame() {
@@ -74,5 +98,25 @@ public class MasyarakatFrame extends JFrame {
             inputMasyarakatFrame = new InputMasyarakatFrame();
         }
         inputMasyarakatFrame.setVisible(true);
+    }
+
+    public void addMasyarakat(Masyarakat masyarakat) {
+        tableModel.add(masyarakat);
+    }
+
+    public void removeMasyarakat(int id) {
+        tableModel.delete(id);
+    }
+
+    public void showSuccessMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void showInfoMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 }

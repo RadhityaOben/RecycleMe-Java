@@ -13,17 +13,18 @@ public class MasyarakatDao {
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO masyarakat " +
-                            "(nama, alamat, email, no_hp, status_registrasi, status_penjemputan, metode_pembayaran, poin)" +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                            "(id, nama, alamat, email, no_hp, status_registrasi, status_penjemputan, metode_pembayaran, poin)" +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
-            statement.setString(1, masyarakat.getNama());
-            statement.setString(2, masyarakat.getAlamat());
-            statement.setString(3, masyarakat.getEmail());
-            statement.setString(4, masyarakat.getNoTelp());
-            statement.setString(5, masyarakat.getStatusRegistrasi());
-            statement.setString(6, masyarakat.getStatusPenjemputan());
-            statement.setString(7, masyarakat.getMetodePembayaran());
-            statement.setInt(8, masyarakat.getPoin());
+            statement.setInt(1, masyarakat.getId());
+            statement.setString(2, masyarakat.getNama());
+            statement.setString(3, masyarakat.getAlamat());
+            statement.setString(4, masyarakat.getEmail());
+            statement.setString(5, masyarakat.getNoTelp());
+            statement.setString(6, masyarakat.getStatusRegistrasi());
+            statement.setString(7, masyarakat.getStatusPenjemputan());
+            statement.setString(8, masyarakat.getMetodePembayaran());
+            statement.setInt(9, masyarakat.getPoin());
 
             result = statement.executeUpdate();
         } catch(Exception e) {
@@ -37,7 +38,17 @@ public class MasyarakatDao {
     }
 
     public int delete(int id) {
-        return 0;
+        int result = -1;
+        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM masyarakat WHERE id = ?"
+            );
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public List<Masyarakat> findAll() {

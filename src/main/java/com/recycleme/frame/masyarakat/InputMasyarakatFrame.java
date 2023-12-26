@@ -24,30 +24,24 @@ public class InputMasyarakatFrame extends JFrame {
     private JLabel noTelpLabel;
     private JTextField noTelpField;
 
-    private JLabel statusRegistrasiLabel;
-    private JComboBox statusRegistrasiComboBox;
-
-    private JLabel statusPenjemputanLabel;
-    private JComboBox statusPenjemputanComboBox;
-
     private JLabel metodePembayaranLabel;
     private JComboBox metodePembayaranComboBox;
-
-    private JLabel poinLabel;
-    private JTextField poinField;
 
     private JButton simpanButton;
     private JButton resetButton;
 
     private MasyarakatDao masyarakatDao;
+    private MasyarakatFrame masyarakatFrame;
 
     public InputMasyarakatFrame() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
         this.setSize(500, 600);
+        masyarakatDao = new MasyarakatDao();
+        masyarakatFrame = new MasyarakatFrame(masyarakatDao);
 
-        MasyarakatSimpan MasyarakatSimpanActionListener = new MasyarakatSimpan(this, masyarakatDao);
+        MasyarakatSimpan MasyarakatSimpanActionListener = new MasyarakatSimpan(this, masyarakatDao, masyarakatFrame);
         MasyarakatReset MasyarakatResetActionListener = new MasyarakatReset(this);
 
         labelFrame = new JLabel("Input Masyarakat");
@@ -77,26 +71,10 @@ public class InputMasyarakatFrame extends JFrame {
         noTelpField = new JTextField();
         noTelpField.setBounds(200, 250, 200, 30);
 
-        statusRegistrasiLabel = new JLabel("Status Registrasi");
-        statusRegistrasiLabel.setBounds(50, 300, 100, 30);
-
-        statusRegistrasiComboBox = new JComboBox();
-        statusRegistrasiComboBox.setBounds(200, 300, 200, 30);
-
-        statusPenjemputanLabel = new JLabel("Status Penjemputan");
-        statusPenjemputanLabel.setBounds(50, 350, 100, 30);
-        statusPenjemputanComboBox = new JComboBox();
-        statusPenjemputanComboBox.setBounds(200, 350, 200, 30);
-
         metodePembayaranLabel = new JLabel("Metode Pembayaran");
         metodePembayaranLabel.setBounds(50, 400, 100, 30);
         metodePembayaranComboBox = new JComboBox();
         metodePembayaranComboBox.setBounds(200, 400, 200, 30);
-
-        poinLabel = new JLabel("Poin");
-        poinLabel.setBounds(50, 450, 100, 30);
-        poinField = new JTextField(20);
-        poinField.setBounds(200, 450, 200, 30);
 
         simpanButton = new JButton("Simpan");
         simpanButton.setBounds(50, 500, 100, 30);
@@ -106,8 +84,6 @@ public class InputMasyarakatFrame extends JFrame {
         simpanButton.addActionListener(MasyarakatSimpanActionListener);
         resetButton.addActionListener(MasyarakatResetActionListener);
 
-        populateStatusRegistrasiComboBox();
-        populateStatusPenjemputanComboBox();
         populateMetodePembayaranComboBox();
 
         add(labelFrame);
@@ -119,32 +95,17 @@ public class InputMasyarakatFrame extends JFrame {
         add(emailField);
         add(noTelpLabel);
         add(noTelpField);
-        add(statusRegistrasiLabel);
-        add(statusRegistrasiComboBox);
-        add(statusPenjemputanLabel);
-        add(statusPenjemputanComboBox);
         add(metodePembayaranLabel);
         add(metodePembayaranComboBox);
-        add(poinLabel);
-        add(poinField);
         add(simpanButton);
         add(resetButton);
 
     }
 
-    public void populateStatusRegistrasiComboBox() {
-        statusRegistrasiComboBox.addItem("Aktif");
-        statusRegistrasiComboBox.addItem("Tidak Aktif");
-    }
-
-    public void populateStatusPenjemputanComboBox() {
-        statusPenjemputanComboBox.addItem("Aktif");
-        statusPenjemputanComboBox.addItem("Tidak Aktif");
-    }
-
     public void populateMetodePembayaranComboBox() {
         metodePembayaranComboBox.addItem("Cash");
-        metodePembayaranComboBox.addItem("Poin");
+        metodePembayaranComboBox.addItem("Debit");
+        metodePembayaranComboBox.addItem("Kredit");
     }
 
     public String getNama() {
@@ -163,20 +124,8 @@ public class InputMasyarakatFrame extends JFrame {
         return this.noTelpField.getText();
     }
 
-    public String getStatusRegistrasi() {
-        return this.statusRegistrasiComboBox.getSelectedItem().toString();
-    }
-
-    public String getStatusPenjemputan() {
-        return this.statusPenjemputanComboBox.getSelectedItem().toString();
-    }
-
     public String getMetodePembayaran() {
         return this.metodePembayaranComboBox.getSelectedItem().toString();
-    }
-
-    public int getPoin() {
-        return parseInt(this.poinField.getText());
     }
 
     public void showSuccessMessage(String message) {
@@ -196,9 +145,6 @@ public class InputMasyarakatFrame extends JFrame {
         this.alamatField.setText("");
         this.emailField.setText("");
         this.noTelpField.setText("");
-        this.statusRegistrasiComboBox.setSelectedIndex(0);
-        this.statusPenjemputanComboBox.setSelectedIndex(0);
         this.metodePembayaranComboBox.setSelectedIndex(0);
-        this.poinField.setText("");
     }
 }

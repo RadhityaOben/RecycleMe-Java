@@ -51,8 +51,13 @@ public MasyarakatTableModel(List<Masyarakat> list) {
         return false;
     }
 
-    public void addMasyarakat(Masyarakat masyarakat) {
+    public void add(Masyarakat masyarakat) {
         list.add(masyarakat);
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+    }
+
+    public void delete(int row) {
+        list.remove(row);
+        fireTableRowsDeleted(row, row);
     }
 }
