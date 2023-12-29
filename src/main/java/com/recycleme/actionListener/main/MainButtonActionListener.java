@@ -15,5 +15,8 @@ public class MainButtonActionListener implements ActionListener {
         if (e.getSource() == mainFrame.getButtonMasyarakat()) {
             mainFrame.showMasyarakatFrame();
         }
+        if (e.getSource() == mainFrame.getButtonKurir()) {
+            mainFrame.showKurirFrame();
+        }
     }
 }

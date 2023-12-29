@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 
 public class MySqlConnection {
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/RecycleMe";
+    private final static String DB_URL = "jdbc:mysql://localhost:3306/recyleme";
     private final static String DB_USER = "root";
     private final static String DB_PASS = "";
 
