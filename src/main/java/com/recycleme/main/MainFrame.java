@@ -1,10 +1,13 @@
 package com.recycleme.main;
 
 import com.recycleme.actionListener.main.MainButtonActionListener;
+import com.recycleme.dao.KategoriDao;
 import com.recycleme.dao.KurirDao;
+import com.recycleme.frame.kategori.KategoriFrame;
 import com.recycleme.frame.kurir.KurirFrame;
 import com.recycleme.frame.masyarakat.MasyarakatFrame;
 import com.recycleme.dao.MasyarakatDao;
+
 
 import java.awt.FlowLayout;
 import javax.swing.*;
@@ -16,6 +19,10 @@ public class MainFrame extends JFrame {
 
     private KurirFrame kurirFrame;
     private KurirDao kurirDao = new KurirDao();
+
+    private KategoriFrame kategoriFrame;
+
+    private KategoriDao kategoriDao = new KategoriDao();
 
     private JButton buttonMasyarakat;
     private JButton buttonKurir;
@@ -84,6 +91,13 @@ public class MainFrame extends JFrame {
             kurirFrame = new KurirFrame(kurirDao);
         }
         kurirFrame.setVisible(true);
+    }
+
+    public void showKategoriFrame() {
+        if(kategoriFrame == null) {
+            kategoriFrame = new KategoriFrame(kategoriDao);
+        }
+        kategoriFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
