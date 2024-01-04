@@ -33,13 +33,13 @@ public class InputMasyarakatFrame extends JFrame {
     private MasyarakatDao masyarakatDao;
     private MasyarakatFrame masyarakatFrame;
 
-    public InputMasyarakatFrame() {
+    public InputMasyarakatFrame(MasyarakatFrame frame) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
         this.setSize(500, 600);
         masyarakatDao = new MasyarakatDao();
-        masyarakatFrame = new MasyarakatFrame(masyarakatDao);
+        masyarakatFrame = frame;
 
         MasyarakatSimpan MasyarakatSimpanActionListener = new MasyarakatSimpan(this, masyarakatDao, masyarakatFrame);
         MasyarakatReset MasyarakatResetActionListener = new MasyarakatReset(this);
@@ -146,5 +146,9 @@ public class InputMasyarakatFrame extends JFrame {
         this.emailField.setText("");
         this.noTelpField.setText("");
         this.metodePembayaranComboBox.setSelectedIndex(0);
+    }
+
+    public JButton getResetButton() {
+        return resetButton;
     }
 }

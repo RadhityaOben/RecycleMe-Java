@@ -19,8 +19,8 @@ public class MasyarakatSimpan implements ActionListener {
         this.masyarakatDao = masyarakatDao;
     }
 
-public void actionPerformed(ActionEvent e) {
-        int id = UUID.randomUUID().hashCode();
+    public void actionPerformed(ActionEvent e) {
+        int id = MasyarakatDao.lastId() + 1;
         String nama = inputMasyarakatFrame.getNama();
         String alamat = inputMasyarakatFrame.getAlamat();
         String email = inputMasyarakatFrame.getEmail();
