@@ -22,6 +22,7 @@ public class MasyarakatFrame extends JFrame {
     private JScrollPane scrollPane;
 
     private InputMasyarakatFrame inputMasyarakatFrame;
+    private UpdateMasyarakatFrame updateMasyarakatFrame;
     private List<Masyarakat> masyarakatList;
     private MasyarakatDao masyarakatDao;
     private MasyarakatTableModel tableModel;
@@ -74,11 +75,21 @@ public class MasyarakatFrame extends JFrame {
     }
 
     public int getSelectedMasyarakatId() {
+        int row = tableMasyarakat.getSelectedRow();
+        int col = 0;
+        return (int) tableMasyarakat.getValueAt(row, col);
+    }
+
+    public int getSelectedMasyarakatRow() {
         return tableMasyarakat.getSelectedRow();
     }
 
     public JButton getButtonInputMasyarakat() {
         return buttonInputMasyarakat;
+    }
+
+    public JButton getButtonUpdateMasyarakat() {
+        return buttonEditMasyarakat;
     }
 
     public JButton getButtonEditMasyarakat() {
@@ -95,17 +106,24 @@ public class MasyarakatFrame extends JFrame {
 
     public void showInputMasyarakatFrame() {
         if(inputMasyarakatFrame == null) {
-            inputMasyarakatFrame = new InputMasyarakatFrame();
+            inputMasyarakatFrame = new InputMasyarakatFrame(this);
         }
         inputMasyarakatFrame.setVisible(true);
+    }
+
+    public void showUpdateMasyarakatFrame() {
+        if(updateMasyarakatFrame == null) {
+            updateMasyarakatFrame = new UpdateMasyarakatFrame(this);
+        }
+        updateMasyarakatFrame.setVisible(true);
     }
 
     public void addMasyarakat(Masyarakat masyarakat) {
         tableModel.add(masyarakat);
     }
 
-    public void removeMasyarakat(int id) {
-        tableModel.delete(id);
+    public void removeMasyarakat(int row) {
+        tableModel.delete(row);
     }
 
     public void showSuccessMessage(String message) {

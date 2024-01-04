@@ -18,11 +18,12 @@ public class MasyarakatHapus implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == masyarakatFrame.getButtonDeleteMasyarakat()) {
             int id = masyarakatFrame.getSelectedMasyarakatId();
+            int row = masyarakatFrame.getSelectedMasyarakatRow();
             if(masyarakatDao.delete(id) == 0) {
                 masyarakatFrame.showErrorMessage("Data gagal dihapus!");
                 return;
             }
-            masyarakatFrame.removeMasyarakat(id);
+            masyarakatFrame.removeMasyarakat(row);
             masyarakatFrame.showSuccessMessage("Data berhasil dihapus!");
         }
     }
