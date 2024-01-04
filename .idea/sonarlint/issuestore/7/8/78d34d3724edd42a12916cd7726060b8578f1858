@@ -1,0 +1,13 @@
+
+F
+java:S1948"0Make "masyarakatList" transient or serializable.(Æ¨¸™
+E
+java:S1948"/Make "masyarakatDao" transient or serializable.(ýð¥þ
+F
+java:S1948"1Make "masyarakatInput" transient or serializable.(¢˜ý
+L
+java:S1948"1Make "masyarakatHapus" transient or serializable.(—¢§¯úÿÿÿÿ
+g
+java:S3252 "LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ
+G
+java:S1068"1Remove this unused "masyarakatDao" private field.(ýð¥þ

@@ -1,8 +1,10 @@
 package com.recycleme.main;
 
 import com.recycleme.actionListener.main.MainButtonActionListener;
+import com.recycleme.dao.DropboxDao;
 import com.recycleme.dao.KategoriDao;
 import com.recycleme.dao.KurirDao;
+import com.recycleme.frame.dropbox.DropboxFrame;
 import com.recycleme.frame.kategori.KategoriFrame;
 import com.recycleme.frame.kurir.KurirFrame;
 import com.recycleme.frame.masyarakat.MasyarakatFrame;
@@ -19,6 +21,9 @@ public class MainFrame extends JFrame {
 
     private KurirFrame kurirFrame;
     private KurirDao kurirDao = new KurirDao();
+
+    private DropboxFrame dropboxFrame;
+    private DropboxDao dropboxDao = new DropboxDao();
 
     private KategoriFrame kategoriFrame;
 
@@ -98,6 +103,13 @@ public class MainFrame extends JFrame {
             kategoriFrame = new KategoriFrame(kategoriDao);
         }
         kategoriFrame.setVisible(true);
+    }
+
+    public void showDropboxFrame() {
+        if (dropboxFrame == null) {
+            dropboxFrame = new DropboxFrame(dropboxDao);
+        }
+        dropboxFrame.setVisible(true);
     }
 
     public static void main(String[] args) {

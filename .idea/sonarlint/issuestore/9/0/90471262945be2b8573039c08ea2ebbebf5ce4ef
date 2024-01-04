@@ -1,3 +1,16 @@
 
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(ıœ±ıÿÿÿÿ8ÊŒÑ«Í1
+K
+java:S1068".Remove this unused "labelTitle" private field.(‚¸—8‹šé«Í1
+S
+java:S1068"6Remove this unused "buttonInputDropBox" private field.(¹öÈø8Îê«Í1
+R
+java:S1068"5Remove this unused "buttonEditDropBox" private field.(¬º¡Ü8Îê«Í1
+S
+java:S1068	"7Remove this unused "buttonDeleteDropBox" private field.(ÎÒ‘B8Îê«Í1
+R
+java:S1068
+"0Remove this unused "tableDropBox" private field.(Âé§şÿÿÿÿ8Îê«Í1
+P
+java:S1068".Remove this unused "scrollPane" private field.(õŸ›‚ÿÿÿÿÿ8æ‰ë«Í1
+R
+java:S1068"5Remove this unused "inputDropBoxFrame" private field.(˜§¹Õ8æ‰ë«Í1
