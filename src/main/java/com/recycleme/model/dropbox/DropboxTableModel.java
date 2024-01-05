@@ -4,8 +4,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class DropboxTableModel extends AbstractTableModel {
-    private String[] columnNames = {"Nama", "Alamat", "Email", "No. Telp", "Status Registrasi", "Status Penjemputan",
-                                    "Metode Pembayaran", "Poin"};
+    private String[] columnNames = {"Sampah", "Nama Pelanggan", "Nama Pengantar"};
     private List<Dropbox> list;
 
     public DropboxTableModel(List<Dropbox> list) {
