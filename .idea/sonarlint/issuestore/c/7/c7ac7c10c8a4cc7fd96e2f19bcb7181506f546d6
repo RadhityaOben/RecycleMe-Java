@@ -1,0 +1,15 @@
+
+D
+java:S1948".Make "kategoriList" transient or serializable.(÷°”
+H
+java:S1948"-Make "kategoriDao" transient or serializable.(ßçœùÿÿÿÿ
+J
+java:S1948"/Make "kategoriInput" transient or serializable.(îĞÃãùÿÿÿÿ
+E
+java:S1948"/Make "kategoriHapus" transient or serializable.(©¨¥á
+g
+java:S3252"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ
+K
+java:S22097"5Change this instance-reference to a static reference.(¬»ˆ‘
+J
+java:S1068"/Remove this unused "kategoriDao" private field.(ßçœùÿÿÿÿ

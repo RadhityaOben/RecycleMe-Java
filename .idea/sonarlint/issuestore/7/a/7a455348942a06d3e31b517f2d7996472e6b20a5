@@ -1,0 +1,15 @@
+
+P
+java:S1948"3Make "inputDropBoxFrame" transient or serializable.(æè€8Å³‹­Í1
+O
+java:S1948"-Make "dropboxList" transient or serializable.(˜áéûÿÿÿÿ8Å³‹­Í1
+I
+java:S1948",Make "dropboxDao" transient or serializable.(œ–ëÎ8Å³‹­Í1
+K
+java:S1948".Make "dropboxInput" transient or serializable.(£èÆå8Å³‹­Í1
+K
+java:S1948".Make "dropboxHapus" transient or serializable.(¦å 8Æ³‹­Í1
+n
+java:S3252"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8È³‹­Í1
+K
+java:S1068".Remove this unused "dropboxDao" private field.(œ–ëÎ8×³‹­Í1
