@@ -1,4 +1,4 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(•»¯»şÿÿÿÿ8©Ûü«Í1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ8ÿïµ¹Í1
+x
+java:S1450"VRemove the "dropbox" field and declare it as a local variable in the relevant methods.(³áĞşÿÿÿÿ8¸şÅ¹Í1

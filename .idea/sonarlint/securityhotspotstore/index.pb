@@ -45,3 +45,9 @@ z
 Jsrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatHapus.java,d\5\d5c67f7095c09c34c742356771c1c9bd17ce2410
 }
 Msrc/main/java/com/recycleme/actionListener/main/MainButtonActionListener.java,2\f\2f29b1a0efc58d1adc10ec21b32928d9152129c1
+v
+Fsrc/main/java/com/recycleme/frame/masyarakat/InputMasyarakatFrame.java,0\3\033165f02b154e4824bf51653d1805714528d524
+{
+Ksrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatSimpan.java,9\6\96ab7dfa033da6b9b674d9568f47ead01bf56d20
+z
+Jsrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatReset.java,7\9\7900d113095f61ad51e8f83720fb80d257dc2dea
