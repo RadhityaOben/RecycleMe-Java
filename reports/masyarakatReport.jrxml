@@ -16,8 +16,7 @@
   (SELECT COUNT(*) FROM recycleme.masyarakat) AS TotalMasyarakat
 FROM recycleme.masyarakat m1
 ORDER BY m1.id DESC
-LIMIT 1
-]]>
+LIMIT 3]]>
 	</queryString>
 	<field name="nama" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nama"/>
@@ -216,7 +215,7 @@ LIMIT 1
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="102" height="30" uuid="26e1d991-1292-45c5-bcf5-7c2c9f9763ff">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d75c7b95-941e-403c-839a-40681de3ab85"/>

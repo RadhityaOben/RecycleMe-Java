@@ -13,8 +13,8 @@
   k1.jenis_kendaraan,
   (SELECT COUNT(*) FROM recycleme.kurir) AS TotalKurir
 FROM recycleme.kurir k1
-WHERE k1.id = (SELECT MAX(id) FROM recycleme.kurir)
-]]>
+ORDER BY k1.id DESC
+LIMIT 3]]>
 	</queryString>
 	<field name="nama" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nama"/>
@@ -173,7 +173,7 @@ WHERE k1.id = (SELECT MAX(id) FROM recycleme.kurir)
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="137" height="30" uuid="5be7db81-2e0e-46ba-be03-c0ac1e4eae3d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a3c1b6a1-63a2-4f13-8425-3dad25ee1db4"/>

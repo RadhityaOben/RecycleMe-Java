@@ -15,7 +15,7 @@
 	</field>
 	<group name="cover">
 		<groupHeader>
-			<part uuid="56b5fc53-c1a4-42a3-b072-b14a86540a04">
+			<part uuid="5b306412-a6a1-454b-b68b-cc97cba10cf4">
 				<p:subreportPart xmlns:p="http://jasperreports.sourceforge.net/jasperreports/parts" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/parts http://jasperreports.sourceforge.net/xsd/parts.xsd">
 					<subreportParameter name="REPORT_CONNECTION">
 						<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
@@ -23,7 +23,7 @@
 					<subreportExpression><![CDATA["masyarakatReport.jasper"]]></subreportExpression>
 				</p:subreportPart>
 			</part>
-			<part uuid="e39a33f3-c46d-4c85-bfda-0af230c1b598">
+			<part uuid="c13e5c7d-61eb-49c7-bffa-c9196723c8c5">
 				<p:subreportPart xmlns:p="http://jasperreports.sourceforge.net/jasperreports/parts" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/parts http://jasperreports.sourceforge.net/xsd/parts.xsd">
 					<subreportParameter name="REPORT_CONNECTION">
 						<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
