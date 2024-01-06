@@ -2,6 +2,8 @@ package com.recycleme.frame.masyarakat;
 
 import com.recycleme.actionListener.masyarakat.MasyarakatHapus;
 import com.recycleme.actionListener.masyarakat.MasyarakatInput;
+import com.recycleme.actionListener.masyarakat.MasyarakatSetujui;
+import com.recycleme.actionListener.masyarakat.MasyarakatTolak;
 import com.recycleme.dao.MasyarakatDao;
 import com.recycleme.model.masyarakat.Masyarakat;
 import com.recycleme.model.masyarakat.MasyarakatTableModel;
@@ -14,7 +16,7 @@ public class MasyarakatFrame extends JFrame {
     private JLabel labelTitle;
 
     private JButton buttonInputMasyarakat;
-    private JButton buttonEditMasyarakat;
+    private JButton buttonTolak;
     private JButton buttonSetujui;
     private JButton buttonDeleteMasyarakat;
 
@@ -22,12 +24,13 @@ public class MasyarakatFrame extends JFrame {
     private JScrollPane scrollPane;
 
     private InputMasyarakatFrame inputMasyarakatFrame;
-    private UpdateMasyarakatFrame updateMasyarakatFrame;
     private List<Masyarakat> masyarakatList;
     private MasyarakatDao masyarakatDao;
     private MasyarakatTableModel tableModel;
     private MasyarakatInput masyarakatInput;
     private MasyarakatHapus masyarakatHapus;
+    private MasyarakatSetujui masyarakatSetujui;
+    private MasyarakatTolak masyarakatTolak;
 
     public MasyarakatFrame(MasyarakatDao masyarakatDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,20 +44,24 @@ public class MasyarakatFrame extends JFrame {
         this.buttonInputMasyarakat = new JButton("Input Masyarakat");
         this.buttonInputMasyarakat.setBounds(50, 50, 150, 30);
 
-        this.buttonEditMasyarakat = new JButton("Edit Masyarakat");
-        this.buttonEditMasyarakat.setBounds(250, 50, 150, 30);
+        this.buttonDeleteMasyarakat = new JButton("Hapus Masyarakat");
+        this.buttonDeleteMasyarakat.setBounds(250, 50, 150, 30);
+
+        this.buttonTolak = new JButton("Tolak Masyarakat");
+        this.buttonTolak.setBounds(450, 50, 150, 30);
 
         this.buttonSetujui = new JButton("Setujui Registrasi");
-        this.buttonSetujui.setBounds(450, 50, 150, 30);
-
-        this.buttonDeleteMasyarakat = new JButton("Delete Masyarakat");
-        this.buttonDeleteMasyarakat.setBounds(650, 50, 150, 30);
+        this.buttonSetujui.setBounds(650, 50, 150, 30);
 
         this.masyarakatInput = new MasyarakatInput(this);
         this.masyarakatHapus = new MasyarakatHapus(this, masyarakatDao);
+        this.masyarakatSetujui = new MasyarakatSetujui(this, masyarakatDao);
+        this.masyarakatTolak = new MasyarakatTolak(this, masyarakatDao);
 
         this.buttonInputMasyarakat.addActionListener(masyarakatInput);
         this.buttonDeleteMasyarakat.addActionListener(masyarakatHapus);
+        this.buttonSetujui.addActionListener(masyarakatSetujui);
+        this.buttonTolak.addActionListener(masyarakatTolak);
 
         this.masyarakatDao = masyarakatDao;
         this.masyarakatList = masyarakatDao.findAll();
@@ -68,7 +75,7 @@ public class MasyarakatFrame extends JFrame {
 
         this.add(labelTitle);
         this.add(buttonInputMasyarakat);
-        this.add(buttonEditMasyarakat);
+        this.add(buttonTolak);
         this.add(buttonSetujui);
         this.add(buttonDeleteMasyarakat);
         this.add(scrollPane);
@@ -80,6 +87,16 @@ public class MasyarakatFrame extends JFrame {
         return (int) tableMasyarakat.getValueAt(row, col);
     }
 
+    public String getSelectedMasyarakatStatusRegistrasi() {
+        int row = tableMasyarakat.getSelectedRow();
+        int col = 5;
+        return (String) tableMasyarakat.getValueAt(row, col);
+    }
+
+    public JTable getTableMasyarakat() {
+        return tableMasyarakat;
+    }
+
     public int getSelectedMasyarakatRow() {
         return tableMasyarakat.getSelectedRow();
     }
@@ -88,12 +105,8 @@ public class MasyarakatFrame extends JFrame {
         return buttonInputMasyarakat;
     }
 
-    public JButton getButtonUpdateMasyarakat() {
-        return buttonEditMasyarakat;
-    }
-
-    public JButton getButtonEditMasyarakat() {
-        return buttonEditMasyarakat;
+    public JButton getButtonTolak() {
+        return buttonTolak;
     }
 
     public JButton getButtonSetujui() {
@@ -111,15 +124,12 @@ public class MasyarakatFrame extends JFrame {
         inputMasyarakatFrame.setVisible(true);
     }
 
-    public void showUpdateMasyarakatFrame() {
-        if(updateMasyarakatFrame == null) {
-            updateMasyarakatFrame = new UpdateMasyarakatFrame(this);
-        }
-        updateMasyarakatFrame.setVisible(true);
-    }
-
     public void addMasyarakat(Masyarakat masyarakat) {
         tableModel.add(masyarakat);
+    }
+
+    public void updateMasyarakat(int row, int col, Masyarakat masyarakat) {
+        tableModel.update(row, col, masyarakat);
     }
 
     public void removeMasyarakat(int row) {

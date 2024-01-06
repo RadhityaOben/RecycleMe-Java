@@ -147,8 +147,4 @@ public class InputMasyarakatFrame extends JFrame {
         this.noTelpField.setText("");
         this.metodePembayaranComboBox.setSelectedIndex(0);
     }
-
-    public JButton getResetButton() {
-        return resetButton;
-    }
 }
