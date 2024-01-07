@@ -6,6 +6,7 @@ import com.recycleme.model.kurir.Kurir;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 public class KurirDao {
     public int insert(Kurir kurir) {
         int result = -1;
@@ -30,13 +31,36 @@ public class KurirDao {
     }
 
     public int update(Kurir kurir) {
-        return 0;
+        int result = -1;
+        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE kurir SET nama = ?, no_hp = ?, status_registrasi = ?, status_penjemputan = ?, jenis_kendaraan = ?, kelengkapan_berkas = ? WHERE id = ?"
+            );
+            statement.setString(1, kurir.getNama());
+            statement.setString(2, kurir.getNoHp());
+            statement.setString(3, kurir.getStatusRegistrasi());
+            statement.setString(4, kurir.getStatusPenjemputan());
+            statement.setString(5, kurir.getJenisKendaraan());
+            statement.setString(6, kurir.getKelengkapanBerkas());
+            statement.setInt(7, kurir.getId());
+
+            result = statement.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public int delete(int id) {
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM dropbox WHERE kurir_id = ?"
+            );
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+
+            statement = connection.prepareStatement(
                     "DELETE FROM kurir WHERE id = ?"
             );
             statement.setInt(1, id);
@@ -100,5 +124,27 @@ public class KurirDao {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public Kurir findById(int id) {
+        Kurir kurir = new Kurir();
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM kurir WHERE id = ?");) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    kurir.setId(resultSet.getInt("id"));
+                    kurir.setNama(resultSet.getString("nama"));
+                    kurir.setNoHp(resultSet.getString("no_hp"));
+                    kurir.setStatusRegistrasi(resultSet.getString("status_registrasi"));
+                    kurir.setStatusPenjemputan(resultSet.getString("status_penjemputan"));
+                    kurir.setJenisKendaraan(resultSet.getString("jenis_kendaraan"));
+                    kurir.setKelengkapanBerkas(resultSet.getString("kelengkapan_berkas"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return kurir;
     }
 }
