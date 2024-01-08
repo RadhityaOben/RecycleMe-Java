@@ -94,7 +94,6 @@ public MasyarakatTableModel(List<Masyarakat> list) {
 
         list.set(row, rowItem);
         fireTableCellUpdated(row, col);
-
     }
 
     public void delete(int row) {

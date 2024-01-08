@@ -13,11 +13,11 @@ public class KategoriDao {
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO kategori " +
-                            "(nama" +
+                            "(id, nama)" +
                             "VALUES (?, ?)"
             );
-            statement.setString(1, kategori.getNama());
-
+            statement.setInt(1, kategori.getId());
+            statement.setString(2, kategori.getNama());
 
             result = statement.executeUpdate();
         } catch(Exception e) {
@@ -27,13 +27,37 @@ public class KategoriDao {
     }
 
     public int update(Kategori kategori) {
-        return 0;
+        int result = -1;
+        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE kategori SET nama = ? WHERE id = ?"
+            );
+            statement.setString(1, kategori.getNama());
+            statement.setInt(2, kategori.getId());
+
+            result = statement.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public int delete(int id) {
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM dropbox WHERE id_kategori = ?"
+            );
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM jenis WHERE id_kategori = ?"
+            );
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+
+            statement = connection.prepareStatement(
                     "DELETE FROM kategori WHERE id = ?"
             );
             statement.setInt(1, id);
@@ -44,96 +68,72 @@ public class KategoriDao {
         return result;
     }
 
-    public static int lastId() {
-        int lastId = 0;
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT id FROM kategori ORDER BY id DESC LIMIT 1"
-            );
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()) {
-                lastId = resultSet.getInt("id");
+    public List<Kategori> findAll() {
+        List<Kategori> list = new ArrayList<>();
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             Statement statement = connection.createStatement();) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM kategori");) {
+                while (resultSet.next()) {
+                    Kategori kategori = new Kategori();
+                    kategori.setId(resultSet.getInt("id"));
+                    kategori.setNama(resultSet.getString("nama"));
+                    list.add(kategori);
+                }
             }
-        } catch(Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return list;
+    }
+
+    public static int lastId() {
+        int lastId = 0;
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             Statement statement = connection.createStatement();) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT id FROM kategori ORDER BY id DESC LIMIT 1");) {
+                while (resultSet.next()) {
+                    lastId = resultSet.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return lastId;
     }
 
     public static int total() {
         int total = 0;
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT COUNT(*) FROM kategori"
-            );
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()) {
-                total = resultSet.getInt(1);
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             Statement statement = connection.createStatement();) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM kategori");) {
+                while (resultSet.next()) {
+                    total = resultSet.getInt(1);
+                }
             }
-        } catch(Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return total;
     }
 
-    public static Kategori findById(int id) {
-        Kategori kategori = null;
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM kategori WHERE id = ?"
-            );
+    public Kategori findById(int id) {
+        Kategori kategori = new Kategori();
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM kategori WHERE id = ?");) {
             statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()) {
-                kategori = new Kategori(
-                        resultSet.getInt("id"),
-                        resultSet.getString("nama")
-                );
+            try (ResultSet resultSet = statement.executeQuery();) {
+                while (resultSet.next()) {
+                    kategori.setId(resultSet.getInt("id"));
+                    kategori.setNama(resultSet.getString("nama"));
+                }
             }
-        } catch(Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return kategori;
     }
-
-public static List<Kategori> findAll() {
-        List<Kategori> list = new ArrayList<>();
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM kategori"
-            );
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()) {
-                list.add(new Kategori(
-                        resultSet.getInt("id"),
-                        resultSet.getString("nama")
-                ));
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    public static List<Kategori> findAll(int page, int limit) {
-        List<Kategori> list = new ArrayList<>();
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM kategori LIMIT ?, ?"
-            );
-            statement.setInt(1, (page - 1) * limit);
-            statement.setInt(2, limit);
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()) {
-                list.add(new Kategori(
-                        resultSet.getInt("id"),
-                        resultSet.getString("nama")
-                ));
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
 }
