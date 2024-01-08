@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+
 public class KurirSimpan implements ActionListener {
     private KurirFrame kurirFrame;
     private InputKurirFrame inputKurirFrame;
@@ -37,5 +38,4 @@ public class KurirSimpan implements ActionListener {
         kurirDao.insert(kurir);
         inputKurirFrame.dispose();
     }
-
 }
