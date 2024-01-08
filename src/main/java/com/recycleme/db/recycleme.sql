@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 20, 2023 at 05:44 PM
+-- Generation Time: Jan 08, 2024 at 05:34 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.12
 
@@ -29,11 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dropbox` (
   `id` int NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `lokasi` text NOT NULL,
+  `tanggal` date NOT NULL,
   `id_masyarakat` int NOT NULL,
-  `id_kurir` int NOT NULL
+  `id_kurir` int NOT NULL,
+  `id_kategori` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `dropbox`
+--
+
+INSERT INTO `dropbox` (`id`, `tanggal`, `id_masyarakat`, `id_kurir`, `id_kategori`) VALUES
+(1, '2024-01-01', 1, 2, 1),
+(3, '2024-01-07', 11, 3, 5),
+(4, '2024-01-07', 8, 3, 7);
 
 -- --------------------------------------------------------
 
@@ -59,6 +68,15 @@ CREATE TABLE `jenis` (
   `id_kategori` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `jenis`
+--
+
+INSERT INTO `jenis` (`id`, `nama`, `id_kategori`) VALUES
+(1, 'Kompor Listrik', 1),
+(2, 'Komputer', 5),
+(3, 'Pendingin', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +88,16 @@ CREATE TABLE `kategori` (
   `nama` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama`) VALUES
+(1, 'Rumah Tangga'),
+(5, 'Kantor'),
+(6, 'Dapur'),
+(7, 'Kamar');
+
 -- --------------------------------------------------------
 
 --
@@ -80,11 +108,19 @@ CREATE TABLE `kurir` (
   `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
   `no_hp` char(13) NOT NULL,
-  `status_registrasi` enum('Disetujui','Ditolak') NOT NULL,
-  `status_penjemputan` enum('Tidak ada penjemputan','Sedang menjemput','Dalam perjalanan','Selesai') NOT NULL,
+  `status_registrasi` enum('Disetujui','Ditolak','Diproses') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status_penjemputan` enum('Tidak ada','Sedang menjemput','Dalam perjalanan','Selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `kelengkapan_berkas` enum('Lengkap','Tidak lengkap') NOT NULL,
   `jenis_kendaraan` enum('Roda 2','Roda 4','Lebih dari roda 4') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `kurir`
+--
+
+INSERT INTO `kurir` (`id`, `nama`, `no_hp`, `status_registrasi`, `status_penjemputan`, `kelengkapan_berkas`, `jenis_kendaraan`) VALUES
+(2, 'werqwrq', 'werwefef', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2'),
+(3, 'egvwefg2e', 'wergrwegrg', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2');
 
 -- --------------------------------------------------------
 
@@ -98,8 +134,8 @@ CREATE TABLE `masyarakat` (
   `alamat` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `no_hp` char(13) NOT NULL,
-  `status_registrasi` enum('Disetujui','Ditolak') NOT NULL,
-  `status_penjemputan` enum('Tidak ada penjemputan','Menunggu','Sedang dijemput','Selesai') NOT NULL,
+  `status_registrasi` enum('Disetujui','Ditolak','Diproses') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status_penjemputan` enum('Tidak ada','Menunggu','Sedang diantar','Selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `metode_pembayaran` enum('Cash','Debit','Kredit') NOT NULL,
   `poin` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -109,8 +145,13 @@ CREATE TABLE `masyarakat` (
 --
 
 INSERT INTO `masyarakat` (`id`, `nama`, `alamat`, `email`, `no_hp`, `status_registrasi`, `status_penjemputan`, `metode_pembayaran`, `poin`) VALUES
-(1, 'Radit', 'Jl. Kemana Saja', 'radit@gmail.com', '091234567890', 'Ditolak', 'Tidak ada penjemputan', 'Cash', 0),
-(2, 'Lanang', 'Jl.123', 'lanang@gmail.com', '080987654321', 'Ditolak', 'Tidak ada penjemputan', 'Cash', 0);
+(1, 'Radhitya', 'Jl. Rumah radit', 'radit@gmail.com', '08131668', 'Ditolak', 'Tidak ada', 'Debit', 0),
+(8, 'Rivan', 'Jl. Rivan', 'rivan@mail.mail', '2039480234', 'Disetujui', 'Tidak ada', 'Debit', 0),
+(9, 'Lanang', 'Jl. Lanang', 'lanang@mail.lanang', '3459086', 'Disetujui', 'Tidak ada', 'Kredit', 0),
+(11, 'Ammar', 'Jl. Ammar', 'ammar@mail.com', '23440983456', 'Ditolak', 'Tidak ada', 'Cash', 0),
+(16, 'Iqbal', 'jl. iqbal	', 'iqbal@mail.com', '340598345', 'Disetujui', 'Tidak ada', 'Cash', 0),
+(26, 'wfqwfqwe', 'fwqefwqfwqefw', 'fwef', 'wfwqfwf', 'Disetujui', 'Tidak ada', 'Cash', 0),
+(27, 'wfqw', 'fewfq', 'efqwefwefw', 'fqwfwf', 'Ditolak', 'Tidak ada', 'Cash', 0);
 
 --
 -- Indexes for dumped tables
@@ -121,8 +162,9 @@ INSERT INTO `masyarakat` (`id`, `nama`, `alamat`, `email`, `no_hp`, `status_regi
 --
 ALTER TABLE `dropbox`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_dropbox_kurir` (`id_kurir`),
   ADD KEY `fk_dropbox_masyarakat` (`id_masyarakat`),
-  ADD KEY `fk_dropbox_kurir` (`id_kurir`);
+  ADD KEY `fk_dropbox_kategori` (`id_kategori`);
 
 --
 -- Indexes for table `dropbox_jenis`
@@ -162,10 +204,40 @@ ALTER TABLE `masyarakat`
 --
 
 --
+-- AUTO_INCREMENT for table `dropbox`
+--
+ALTER TABLE `dropbox`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `dropbox_jenis`
 --
 ALTER TABLE `dropbox_jenis`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jenis`
+--
+ALTER TABLE `jenis`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `kurir`
+--
+ALTER TABLE `kurir`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `masyarakat`
+--
+ALTER TABLE `masyarakat`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
@@ -175,6 +247,7 @@ ALTER TABLE `dropbox_jenis`
 -- Constraints for table `dropbox`
 --
 ALTER TABLE `dropbox`
+  ADD CONSTRAINT `fk_dropbox_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_dropbox_kurir` FOREIGN KEY (`id_kurir`) REFERENCES `kurir` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_dropbox_masyarakat` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 

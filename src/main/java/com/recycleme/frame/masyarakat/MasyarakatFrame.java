@@ -25,7 +25,6 @@ public class MasyarakatFrame extends JFrame {
 
     private InputMasyarakatFrame inputMasyarakatFrame;
     private List<Masyarakat> masyarakatList;
-    private MasyarakatDao masyarakatDao;
     private MasyarakatTableModel tableModel;
     private MasyarakatInput masyarakatInput;
     private MasyarakatHapus masyarakatHapus;
@@ -37,41 +36,39 @@ public class MasyarakatFrame extends JFrame {
         this.setSize(1000, 500);
         this.setLayout(null);
 
+        this.masyarakatInput = new MasyarakatInput(this);
+        this.masyarakatHapus = new MasyarakatHapus(this, masyarakatDao);
+        this.masyarakatSetujui = new MasyarakatSetujui(this, masyarakatDao);
+        this.masyarakatTolak = new MasyarakatTolak(this, masyarakatDao);
+
         this.labelTitle = new JLabel("Daftar Semua Masyarakat");
         this.labelTitle.setBounds(50, 10, 300, 30);
         labelTitle.setFont(new Font("Tahoma", 1, 18));
 
         this.buttonInputMasyarakat = new JButton("Input Masyarakat");
         this.buttonInputMasyarakat.setBounds(50, 50, 150, 30);
+        this.buttonInputMasyarakat.addActionListener(masyarakatInput);
 
         this.buttonDeleteMasyarakat = new JButton("Hapus Masyarakat");
         this.buttonDeleteMasyarakat.setBounds(250, 50, 150, 30);
-
-        this.buttonTolak = new JButton("Tolak Masyarakat");
-        this.buttonTolak.setBounds(450, 50, 150, 30);
-
-        this.buttonSetujui = new JButton("Setujui Registrasi");
-        this.buttonSetujui.setBounds(650, 50, 150, 30);
-
-        this.masyarakatInput = new MasyarakatInput(this);
-        this.masyarakatHapus = new MasyarakatHapus(this, masyarakatDao);
-        this.masyarakatSetujui = new MasyarakatSetujui(this, masyarakatDao);
-        this.masyarakatTolak = new MasyarakatTolak(this, masyarakatDao);
-
-        this.buttonInputMasyarakat.addActionListener(masyarakatInput);
         this.buttonDeleteMasyarakat.addActionListener(masyarakatHapus);
-        this.buttonSetujui.addActionListener(masyarakatSetujui);
+
+        this.buttonTolak = new JButton("Tolak Permintaan");
+        this.buttonTolak.setBounds(600, 50, 150, 30);
         this.buttonTolak.addActionListener(masyarakatTolak);
 
-        this.masyarakatDao = masyarakatDao;
+        this.buttonSetujui = new JButton("Setujui Permintaan");
+        this.buttonSetujui.setBounds(800, 50, 150, 30);
+        this.buttonSetujui.addActionListener(masyarakatSetujui);
+
         this.masyarakatList = masyarakatDao.findAll();
 
-        tableMasyarakat = new JTable(new MasyarakatTableModel(masyarakatList));
+        tableModel = new MasyarakatTableModel(masyarakatList);
+        tableMasyarakat = new JTable(tableModel);
+        tableMasyarakat.setModel(tableModel);
         scrollPane = new JScrollPane(tableMasyarakat);
         scrollPane.setBounds(50, 100, 900, 300);
 
-        tableModel = new MasyarakatTableModel(masyarakatList);
-        tableMasyarakat.setModel(tableModel);
 
         this.add(labelTitle);
         this.add(buttonInputMasyarakat);
@@ -101,6 +98,10 @@ public class MasyarakatFrame extends JFrame {
         return tableMasyarakat.getSelectedRow();
     }
 
+    public int getSelectedMasyarakatCol() {
+        return tableMasyarakat.getSelectedColumn();
+    }
+
     public JButton getButtonInputMasyarakat() {
         return buttonInputMasyarakat;
     }
@@ -121,6 +122,7 @@ public class MasyarakatFrame extends JFrame {
         if(inputMasyarakatFrame == null) {
             inputMasyarakatFrame = new InputMasyarakatFrame(this);
         }
+        inputMasyarakatFrame.reset();
         inputMasyarakatFrame.setVisible(true);
     }
 

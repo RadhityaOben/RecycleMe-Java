@@ -55,7 +55,7 @@ public class KurirDao {
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM dropbox WHERE kurir_id = ?"
+                    "DELETE FROM dropbox WHERE id_kurir = ?"
             );
             statement.setInt(1, id);
             result = statement.executeUpdate();
