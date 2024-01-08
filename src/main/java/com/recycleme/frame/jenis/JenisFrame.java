@@ -2,7 +2,7 @@ package com.recycleme.frame.jenis;
 
 import com.recycleme.actionListener.kategori.KategoriHapus;
 import com.recycleme.actionListener.kategori.KategoriInput;
-//import com.recycleme.dao.JenisDao;
+import com.recycleme.dao.JenisDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.JenisTableModel;
 import javax.swing.*;

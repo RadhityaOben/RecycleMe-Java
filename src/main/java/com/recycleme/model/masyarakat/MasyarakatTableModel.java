@@ -7,7 +7,7 @@ public class MasyarakatTableModel extends AbstractTableModel {
     private String[] columnNames = {"ID", "Nama", "Alamat", "Email", "No. Telp", "Status Registrasi", "Status Penjemputan", "Metode Pembayaran", "Poin"};
     private List<Masyarakat> list;
 
-    public MasyarakatTableModel(List<Masyarakat> list) {
+public MasyarakatTableModel(List<Masyarakat> list) {
         this.list = list;
     }
 
@@ -56,6 +56,45 @@ public class MasyarakatTableModel extends AbstractTableModel {
     public void add(Masyarakat masyarakat) {
         list.add(masyarakat);
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+    }
+
+    public void update(int row, int col, Masyarakat masyarakat) {
+        Masyarakat rowItem = list.get(row);
+        switch (col) {
+            case 0:
+                rowItem.setId(masyarakat.getId());
+                break;
+            case 1:
+                rowItem.setNama(masyarakat.getNama());
+                break;
+            case 2:
+                rowItem.setAlamat(masyarakat.getAlamat());
+                break;
+            case 3:
+                rowItem.setEmail(masyarakat.getEmail());
+                break;
+            case 4:
+                rowItem.setNoTelp(masyarakat.getNoTelp());
+                break;
+            case 5:
+                rowItem.setStatusRegistrasi(masyarakat.getStatusRegistrasi());
+                break;
+            case 6:
+                rowItem.setStatusPenjemputan(masyarakat.getStatusPenjemputan());
+                break;
+            case 7:
+                rowItem.setMetodePembayaran(masyarakat.getMetodePembayaran());
+                break;
+            case 8:
+                rowItem.setPoin(masyarakat.getPoin());
+                break;
+            default:
+                break;
+        }
+
+        list.set(row, rowItem);
+        fireTableCellUpdated(row, col);
+
     }
 
     public void delete(int row) {

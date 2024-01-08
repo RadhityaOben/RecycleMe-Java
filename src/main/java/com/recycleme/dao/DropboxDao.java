@@ -42,13 +42,13 @@ public class DropboxDao {
         );
     }
 
-    public int delete(Dropbox dropbox) {
+    public int delete(int id) {
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
                     "DELETE FROM dropbox WHERE id = ?"
             );
-            statement.setInt(1, dropbox.getId());
+            statement.setInt(1, id);
             result = statement.executeUpdate();
         } catch(Exception e) {
             e.printStackTrace();

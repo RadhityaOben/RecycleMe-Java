@@ -1,11 +1,13 @@
 
 J
-java:S1604h"(Make this anonymous inner class a lambda(Ô¶µÿþÿÿÿÿ8ž•±©Í1
+java:S1604t"(Make this anonymous inner class a lambda(Ô¶µÿþÿÿÿÿ8·¯ì¬Í1
 Q
-java:S1948"/Make "masyarakatDao" transient or serializable.(Ã”Ñ¼úÿÿÿÿ8Ñ•±©Í1
+java:S1948"/Make "masyarakatDao" transient or serializable.(Ã”Ñ¼úÿÿÿÿ8Ì¯ì¬Í1
 L
-java:S1948"*Make "kurirDao" transient or serializable.(œÎù®úÿÿÿÿ8²¸è©Í1
+java:S1948"*Make "kurirDao" transient or serializable.(œÎù®úÿÿÿÿ8Ì¯ì¬Í1
+I
+java:S1948",Make "dropboxDao" transient or serializable.(ë»ºœ8Ì¯ì¬Í1
 O
-java:S1948"-Make "kategoriDao" transient or serializable.(û¿¨—øÿÿÿÿ8³¸è©Í1
+java:S1948"-Make "kategoriDao" transient or serializable.(û¿¨—øÿÿÿÿ8Ì¯ì¬Í1
 e
-java:S3252""IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8Ù•±©Í1
+java:S3252'"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(ºÀœx8Ó¯ì¬Í1

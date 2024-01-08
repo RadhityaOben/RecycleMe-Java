@@ -19,7 +19,7 @@ public class MasyarakatSimpan implements ActionListener {
         this.masyarakatDao = masyarakatDao;
     }
 
-    public void actionPerformed(ActionEvent e) {
+public void actionPerformed(ActionEvent e) {
         int id = MasyarakatDao.lastId() + 1;
         String nama = inputMasyarakatFrame.getNama();
         String alamat = inputMasyarakatFrame.getAlamat();
@@ -32,6 +32,7 @@ public class MasyarakatSimpan implements ActionListener {
 
         masyarakat = new Masyarakat(id, nama, alamat, email, noTelp, statusRegistrasi, statusPenjemputan, metodePembayaran, poin);
         inputMasyarakatFrame.showSuccessMessage("Daftar berhasil! Silahkan tunggu konfirmasi dari admin.");
+        masyarakat.setId(MasyarakatDao.lastId());
         inputMasyarakatFrame.reset();
         inputMasyarakatFrame.dispose();
         masyarakatFrame.addMasyarakat(masyarakat);
