@@ -14,7 +14,7 @@ public class DropboxInput implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == dropboxFrame.getButtonInputDropBox()) {
+        if(e.getSource() == dropboxFrame.getButtonInputDropbox()) {
             dropboxFrame.showInputDropboxFrame();
         }
     }
