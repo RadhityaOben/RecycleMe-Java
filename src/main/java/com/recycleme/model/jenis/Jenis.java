@@ -1,11 +1,11 @@
 package com.recycleme.model.jenis;
+
 import com.recycleme.model.kategori.Kategori;
 
 public class Jenis {
     private int id;
     private String nama;
     private Kategori kategori;
-    private int poin;
 
     public Jenis(int id, String nama, Kategori kategori) {
         this.id = id;
@@ -27,10 +27,6 @@ public class Jenis {
         return kategori;
     }
 
-    public int getPoin() {
-        return poin;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -41,9 +37,5 @@ public class Jenis {
 
     public void setKategori(Kategori kategori) {
         this.kategori = kategori;
-    }
-
-    public void setPoin(int poin) {
-        this.poin = poin;
     }
 }

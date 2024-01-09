@@ -3,8 +3,8 @@ package com.recycleme.model.jenis;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class JenisTableModel extends AbstractTableModel {
-    private final String[] columnNames = {"ID", "Nama", "Kategori", "Poin"};
+public class JenisTableModel extends AbstractTableModel{
+    private String[] columnNames = {"ID", "Nama", "Kategori"};
     private List<Jenis> list;
 
     public JenisTableModel(List<Jenis> list) {
@@ -25,13 +25,16 @@ public class JenisTableModel extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         Jenis jenis = list.get(row);
-        return switch (col) {
-            case 0 -> jenis.getId();
-            case 1 -> jenis.getNama();
-            case 2 -> jenis.getKategori();
-            case 3 -> jenis.getPoin();
-            default -> "";
-        };
+        switch (col) {
+            case 0:
+                return jenis.getId();
+            case 1:
+                return jenis.getNama();
+            case 2:
+                return jenis.getKategori().getNama();
+            default:
+                return "";
+        }
     }
 
     public boolean isCellEditable(int row, int col) {
@@ -40,7 +43,24 @@ public class JenisTableModel extends AbstractTableModel {
 
     public void add(Jenis jenis) {
         list.add(jenis);
-        fireTableRowsInserted(getRowCount() - 1, getColumnCount() - 1);
+        fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+    }
+
+    public void update(int row, int col, String value) {
+        Jenis jenis = list.get(row);
+        switch (col) {
+            case 0:
+                jenis.setId(Integer.parseInt(value));
+                break;
+            case 1:
+                jenis.setNama(value);
+                break;
+            case 2:
+                jenis.getKategori().setNama(value);
+                break;
+        }
+        list.set(row, jenis);
+        fireTableCellUpdated(row, col);
     }
 
     public void delete(int row) {
