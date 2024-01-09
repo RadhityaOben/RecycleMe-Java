@@ -32,11 +32,10 @@ public class KategoriSimpan implements ActionListener {
             return;
         }
 
-////        jika nama sudah ada di database
-//        if(kategoriDao.getKategori(nama) != null) {
-//            inputKategoriFrame.showMessageError("Nama kategori sudah ada!");
-//            return;
-//        }
+        if(kategoriFrame.isKategoriExist(nama)) {
+            inputKategoriFrame.showMessageError("Nama kategori sudah ada!");
+            return;
+        }
 
         int confirm = JOptionPane.showConfirmDialog(inputKategoriFrame, "Apakah data yang dimasukkan sudah sesuai?", "Konfirmasi",
                 JOptionPane.YES_NO_OPTION);

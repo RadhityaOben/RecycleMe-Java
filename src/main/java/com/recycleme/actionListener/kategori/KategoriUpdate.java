@@ -30,7 +30,7 @@ public class KategoriUpdate implements ActionListener {
         }
 
         //jika nama kategori sama dengan nama kategori yang sudah ada
-        if(KategoriFrame.isKategoriExist(nama)) {
+        if(kategoriFrame.isKategoriExist(nama)) {
             editKategoriFrame.showMessageError("Nama kategori sudah ada!");
             return;
         }
