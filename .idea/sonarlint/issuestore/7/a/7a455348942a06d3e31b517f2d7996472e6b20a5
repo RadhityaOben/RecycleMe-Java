@@ -1,13 +1,10 @@
 
+]	java:S125"<This block of commented-out lines of code should be removed.(ÓŒâÔúÿÿÿÿ8ÖêşìÎ1
 O
-java:S1948"-Make "dropboxList" transient or serializable.(˜áéûÿÿÿÿ8Å³‹­Í1
-I
-java:S1948",Make "dropboxDao" transient or serializable.(œ–ëÎ8Å³‹­Í1
+java:S1948"-Make "dropboxList" transient or serializable.(˜áéûÿÿÿÿ8İêşìÎ1
 K
-java:S1948".Make "dropboxInput" transient or serializable.(£èÆå8Å³‹­Í1
+java:S1948 ".Make "dropboxInput" transient or serializable.(£èÆå8İêşìÎ1
 K
-java:S1948".Make "dropboxHapus" transient or serializable.(¦å 8Æ³‹­Í1
+java:S1948!".Make "dropboxHapus" transient or serializable.(¦å 8ŞêşìÎ1
 n
-java:S3252"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8È³‹­Í1
-K
-java:S1068".Remove this unused "dropboxDao" private field.(œ–ëÎ8×³‹­Í1
+java:S3252'"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8âêşìÎ1

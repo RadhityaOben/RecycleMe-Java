@@ -1,106 +1,136 @@
 package com.recycleme.frame.dropbox;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.List;
+
+//import com.recycleme.actionListener.dropbox.DropboxHapus;
+//import com.recycleme.actionListener.dropbox.DropboxInput;
 import com.recycleme.actionListener.dropbox.DropboxHapus;
 import com.recycleme.actionListener.dropbox.DropboxInput;
+import com.recycleme.actionListener.reports.PDFReport;
 import com.recycleme.dao.DropboxDao;
+import com.recycleme.frame.reports.ReportsFrame;
 import com.recycleme.model.dropbox.Dropbox;
 import com.recycleme.model.dropbox.DropboxTableModel;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.List;
-
-public class DropboxFrame extends JFrame {
+public class DropboxFrame extends JFrame{
     private JLabel labelTitle;
-    private JButton buttonInputDropBox;
-    private JButton buttonEditDropBox;
-    private JButton buttonDeleteDropBox;
-    private JTable tableDropBox;
+
+    private JButton buttonInputDropbox;
+    private JButton buttonCetakPDF;
+    private JButton buttonDeleteDropbox;
+
+    private JTable tableDropbox;
     private JScrollPane scrollPane;
-    private InputDropboxFrame inputDropBoxFrame;
+
     private List<Dropbox> dropboxList;
-    private DropboxDao dropboxDao;
     private DropboxTableModel tableModel;
+
+    private InputDropboxFrame inputDropboxFrame;
     private DropboxInput dropboxInput;
     private DropboxHapus dropboxHapus;
+
+    private ReportsFrame reportsFrame;
+    private PDFReport pdfReport;
 
     public DropboxFrame(DropboxDao dropboxDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(1000, 500);
         this.setLayout(null);
 
+        this.dropboxInput = new DropboxInput(this);
+        this.dropboxHapus = new DropboxHapus(this, dropboxDao);
+        this.pdfReport = new PDFReport(this);
+
         this.labelTitle = new JLabel("Daftar Semua Dropbox");
         this.labelTitle.setBounds(50, 10, 300, 30);
         labelTitle.setFont(new Font("Tahoma", 1, 18));
 
-        this.buttonInputDropBox = new JButton("Input Dropbox");
-        this.buttonInputDropBox.setBounds(50, 50, 150, 30);
+        this.buttonInputDropbox = new JButton("Input Dropbox");
+        this.buttonInputDropbox.setBounds(50, 50, 150, 30);
 
-        this.buttonEditDropBox = new JButton("Edit Dropbox");
-        this.buttonEditDropBox.setBounds(250, 50, 150, 30);
+        this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
+        this.buttonCetakPDF.setBounds(250, 50, 150, 30);
 
-        this.buttonDeleteDropBox = new JButton("Delete Dropbox");
-        this.buttonDeleteDropBox.setBounds(450, 50, 150, 30);
+        this.buttonDeleteDropbox = new JButton("Delete Dropbox");
+        this.buttonDeleteDropbox.setBounds(450, 50, 150, 30);
 
-        this.dropboxInput = new DropboxInput(this);
-        this.dropboxHapus = new DropboxHapus(this, dropboxDao);
+        this.buttonCetakPDF.addActionListener(pdfReport);
 
-        this.buttonInputDropBox.addActionListener(dropboxInput);
-        this.buttonDeleteDropBox.addActionListener(dropboxHapus);
+        this.buttonInputDropbox.addActionListener(dropboxInput);
+        this.buttonDeleteDropbox.addActionListener(dropboxHapus);
 
-        this.buttonInputDropBox.addActionListener(dropboxInput);
-        this.buttonDeleteDropBox.addActionListener(dropboxHapus);
-
-        this.dropboxDao = dropboxDao;
         this.dropboxList = dropboxDao.findAll();
 
-        tableDropBox = new JTable(new DropboxTableModel(dropboxList));
-        scrollPane = new JScrollPane(tableDropBox);
-        scrollPane.setBounds(50, 100, 900, 300);
+        this.tableModel = new DropboxTableModel(dropboxList);
 
-        tableModel = new DropboxTableModel(dropboxList);
-        tableDropBox.setModel(tableModel);
+        this.tableDropbox = new JTable(tableModel);
+        tableDropbox.setModel(tableModel);
+        this.scrollPane = new JScrollPane(tableDropbox);
+        this.scrollPane.setBounds(50, 100, 900, 300);
 
         this.add(labelTitle);
-        this.add(buttonDeleteDropBox);
-        this.add(buttonInputDropBox);
-        this.add(buttonEditDropBox);
+        this.add(buttonInputDropbox);
+        this.add(buttonCetakPDF);
+        this.add(buttonDeleteDropbox);
         this.add(scrollPane);
     }
 
-    public void addDropbox(Dropbox dropbox) {
-        tableModel.addRow(dropbox);
+    public JButton getCetakPDF() {
+        return buttonCetakPDF;
     }
 
-    public void removeDropbox(int id) {
-        tableModel.removeRow(id);
+    public JButton getButtonInputDropbox() {
+        return buttonInputDropbox;
     }
 
-    public JButton getButtonInputDropBox() {
-        return buttonInputDropBox;
-    }
-
-    public JButton getButtonDeleteDropBox() {
-        return buttonDeleteDropBox;
+    public JButton getButtonDeleteDropbox() {
+        return buttonDeleteDropbox;
     }
 
     public int getSelectedDropboxId() {
-        return tableDropBox.getSelectedRow();
+        return Integer.parseInt(tableDropbox.getValueAt(tableDropbox.getSelectedRow(), 0).toString());
     }
 
-    public void showInputDropboxFrame() {
-        if (inputDropBoxFrame == null) {
-            inputDropBoxFrame = new InputDropboxFrame();
+    public int getSelectedDropboxRow() {
+        return tableDropbox.getSelectedRow();
+    }
+
+    public void showCetakPDF() {
+        if(reportsFrame == null) {
+            reportsFrame = new ReportsFrame();
         }
-        inputDropBoxFrame.setVisible(true);
+        reportsFrame.setVisible(true);
+    }
+
+    public void showInputDropbox() {
+        if(inputDropboxFrame == null) {
+            inputDropboxFrame = new InputDropboxFrame(this);
+        }
+        inputDropboxFrame.setVisible(true);
+    }
+
+    public void addDropbox(Dropbox dropbox) {
+        tableModel.add(dropbox);
+    }
+
+    public void removeDropbox(int id) {
+        tableModel.delete(id);
+        tableModel.fireTableDataChanged();
+    }
+
+    public void showSuccessMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void showSuccessMessage(String message) {
-        JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+    public void showSuccessMessage(String message, String title) {
+        JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

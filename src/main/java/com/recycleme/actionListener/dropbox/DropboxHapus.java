@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 public class DropboxHapus implements ActionListener {
     private DropboxFrame dropboxFrame;
     private DropboxDao dropboxDao;
-    private Dropbox dropbox;
 
     public DropboxHapus(DropboxFrame dropboxFrame, DropboxDao dropboxDao) {
         this.dropboxFrame = dropboxFrame;
