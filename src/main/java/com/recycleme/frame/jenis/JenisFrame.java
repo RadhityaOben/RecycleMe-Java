@@ -1,5 +1,6 @@
 package com.recycleme.frame.jenis;
 
+import com.recycleme.actionListener.jenis.JenisEdit;
 import com.recycleme.dao.JenisDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.JenisTableModel;
@@ -29,6 +30,7 @@ public class JenisFrame extends JFrame {
     private List<Jenis> jenisList;
     private JenisTableModel tableModel;
     private JenisInput jenisInput;
+    private JenisEdit jenisEdit;
     private JenisHapus jenisHapus;
 
     public JenisFrame(JenisDao jenisDao) {
@@ -51,9 +53,11 @@ public class JenisFrame extends JFrame {
 
 
         this.jenisInput = new JenisInput(this);
+        this.jenisEdit = new JenisEdit(this);
         this.jenisHapus = new JenisHapus(this, jenisDao);
 
         this.buttonInputJenis.addActionListener(jenisInput);
+        this.buttonEditJenis.addActionListener(jenisEdit);
         this.buttonDeleteJenis.addActionListener(jenisHapus);
 
 
@@ -106,6 +110,11 @@ public class JenisFrame extends JFrame {
 
     public void addJenis(Jenis jenis) {
         tableModel.add(jenis);
+        tableModel.fireTableDataChanged();
+    }
+
+    public void updateJenis(Jenis jenis) {
+        jenisList.set(getSelectedJenisRow(), jenis);
         tableModel.fireTableDataChanged();
     }
 
