@@ -51,11 +51,11 @@ public class DropboxFrame extends JFrame{
         this.buttonInputDropbox = new JButton("Input Dropbox");
         this.buttonInputDropbox.setBounds(50, 50, 150, 30);
 
-        this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
-        this.buttonCetakPDF.setBounds(250, 50, 150, 30);
-
         this.buttonDeleteDropbox = new JButton("Delete Dropbox");
-        this.buttonDeleteDropbox.setBounds(450, 50, 150, 30);
+        this.buttonDeleteDropbox.setBounds(250, 50, 150, 30);
+
+        this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
+        this.buttonCetakPDF.setBounds(450, 50, 150, 30);
 
         this.buttonCetakPDF.addActionListener(pdfReport);
 
