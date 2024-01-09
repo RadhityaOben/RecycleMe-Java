@@ -12,7 +12,6 @@ import com.recycleme.model.masyarakat.Masyarakat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.util.UUID;
 
 public class DropboxSimpan implements ActionListener {
     private DropboxFrame dropboxFrame;

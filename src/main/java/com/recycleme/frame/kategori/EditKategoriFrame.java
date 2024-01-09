@@ -1,15 +1,15 @@
 package com.recycleme.frame.kategori;
 
+import com.recycleme.actionListener.kategori.KategoriDefault;
+import com.recycleme.actionListener.kategori.KategoriUpdate;
 import com.recycleme.dao.KategoriDao;
-import com.recycleme.actionListener.kategori.KategoriSimpan;
-import com.recycleme.actionListener.kategori.KategoriReset;
-
+import com.recycleme.model.kategori.Kategori;
 
 import javax.swing.*;
 import java.awt.*;
 
 
-public class InputKategoriFrame extends JFrame{
+public class EditKategoriFrame extends JFrame{
 
     private JLabel labelFrame;
 
@@ -27,8 +27,10 @@ public class InputKategoriFrame extends JFrame{
 
     private JComboBox jenisKategoriSampahElektronikComboBox = new JComboBox();
 
+    private Kategori oldKategori;
 
-    public InputKategoriFrame(KategoriFrame frame) {
+
+    public EditKategoriFrame(KategoriFrame frame, int id) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
@@ -36,27 +38,29 @@ public class InputKategoriFrame extends JFrame{
         kategoriDao = new KategoriDao();
         kategoriFrame = frame;
 
-        KategoriSimpan KategoriSimpanActionListener = new KategoriSimpan(this, kategoriDao, kategoriFrame);
-        KategoriReset KategoriResetActionListener = new KategoriReset(this);
+        oldKategori = kategoriDao.findById(id);
 
-        labelFrame = new JLabel("Input Kategori");
-        labelFrame.setBounds(50, 10, 200, 30);
+        KategoriUpdate KategoriUpdateActionListener = new KategoriUpdate(this, kategoriDao, kategoriFrame);
+        KategoriDefault KategoriResetActionListener = new KategoriDefault(this);
+
+        labelFrame = new JLabel("Edit Kategori");
+        labelFrame.setBounds(50, 10, 300, 30);
         labelFrame.setFont(new Font("Tahoma", 1, 18));
 
         namaLabel = new JLabel("Nama");
         namaLabel.setBounds(50, 100, 100, 30);
 
-        namaField = new JTextField();
+        namaField = new JTextField(oldKategori.getNama());
         namaField.setBounds(200, 100, 200, 30);
 
         simpanButton = new JButton("Simpan");
         simpanButton.setBounds(50, 150, 100, 30);
 
-        resetButton = new JButton("Reset");
+        resetButton = new JButton("Default");
         resetButton.setBounds(200, 150, 100, 30);
 
 
-        simpanButton.addActionListener(KategoriSimpanActionListener);
+        simpanButton.addActionListener(KategoriUpdateActionListener);
         resetButton.addActionListener(KategoriResetActionListener);
 
         populateJenisKategoriSampahElektronikComboBox();
@@ -68,6 +72,10 @@ public class InputKategoriFrame extends JFrame{
         add(resetButton);
 
         setVisible(true);
+    }
+
+    public int getId() {
+        return oldKategori.getId();
     }
 
     public String getNama() {
@@ -90,16 +98,8 @@ public class InputKategoriFrame extends JFrame{
         JOptionPane.showMessageDialog(this, message);
     }
 
-    public int showConfirmMessage(String message, String title, int option) {
-        return JOptionPane.showConfirmDialog(this, message, title, option);
-    }
-
-    public void showInfoMessage(String message) {
-        JOptionPane.showMessageDialog(this, message);
-    }
-
-    public void reset() {
-        this.namaField.setText("");
+    public void defaultValue() {
+        namaField.setText(oldKategori.getNama());
     }
 
     public void populateJenisKategoriSampahElektronikComboBox() {
