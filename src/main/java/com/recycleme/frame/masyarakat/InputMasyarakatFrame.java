@@ -35,7 +35,7 @@ public class InputMasyarakatFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        this.setSize(500, 600);
+        this.setSize(500, 515);
         masyarakatDao = new MasyarakatDao();
         masyarakatFrame = frame;
 
@@ -70,14 +70,14 @@ public class InputMasyarakatFrame extends JFrame {
         noTelpField.setBounds(200, 250, 200, 30);
 
         metodePembayaranLabel = new JLabel("Metode Pembayaran");
-        metodePembayaranLabel.setBounds(50, 400, 100, 30);
+        metodePembayaranLabel.setBounds(50, 300, 130, 30);
         metodePembayaranComboBox = new JComboBox();
-        metodePembayaranComboBox.setBounds(200, 400, 200, 30);
+        metodePembayaranComboBox.setBounds(200, 300, 200, 30);
 
         simpanButton = new JButton("Simpan");
-        simpanButton.setBounds(50, 500, 100, 30);
+        simpanButton.setBounds(50, 360, 100, 30);
         resetButton = new JButton("Reset");
-        resetButton.setBounds(200, 500, 100, 30);
+        resetButton.setBounds(200, 360, 100, 30);
 
         simpanButton.addActionListener(MasyarakatSimpanActionListener);
         resetButton.addActionListener(MasyarakatResetActionListener);
