@@ -21,6 +21,7 @@ public class KategoriHapus implements ActionListener {
         if(e.getSource() == kategoriFrame.getButtonDeleteKategori()) {
             int id = kategoriFrame.getSelectedKategoriId();
             int row = kategoriFrame.getSelectedKategoriRow();
+
             if(row == -1) {
                 kategoriFrame.showErrorMessage("Pilih kategori terlebih dahulu!");
                 return;

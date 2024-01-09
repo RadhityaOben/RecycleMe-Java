@@ -43,7 +43,7 @@ public class InputDropboxFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        this.setSize(500, 600);
+        this.setSize(500, 350);
         dropboxDao = new DropboxDao();
 
         dropboxSimpan = new DropboxSimpan(this, dropboxDao, frame);
@@ -79,6 +79,7 @@ public class InputDropboxFrame extends JFrame {
         resetButton.setBounds(200, 250, 100, 30);
 
         simpanButton.addActionListener(dropboxSimpan);
+        resetButton.addActionListener(new com.recycleme.actionListener.dropbox.DropboxReset(this));
 
         populateComboBox();
 
@@ -97,6 +98,10 @@ public class InputDropboxFrame extends JFrame {
         masyarakatList = masyarakatDao.findAll();
         kurirList = kurirDao.findAll();
         kategoriList = kategoriDao.findAll();
+
+        masyarakatComboBox.addItem("Pilih Masyarakat");
+        kurirComboBox.addItem("Pilih Kurir");
+        kategoriComboBox.addItem("Pilih Kategori");
 
         for(Masyarakat m : masyarakatList) {
             masyarakatComboBox.addItem(m.getNama());

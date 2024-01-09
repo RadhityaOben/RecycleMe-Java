@@ -1,4 +1,10 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ8èùàìÎ1
+}
+java:S1192%"[Define a constant instead of duplicating this literal "Dropbox gagal ditambahkan." 4 times.(Ò×Ñøÿÿÿÿ8„é¢õÎ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ8†é¢õÎ1
 x
-java:S1450"VRemove the "dropbox" field and declare it as a local variable in the relevant methods.(³áĞşÿÿÿÿ8ú©æìÎ1
+java:S1450"VRemove the "dropbox" field and declare it as a local variable in the relevant methods.(³áĞşÿÿÿÿ8®é¢õÎ1
+n
+java:S1871*"LThis branch's code block is the same as the block for the branch on line 36.(ÅŞ©Çúÿÿÿÿ8µé¢õÎ1
+n
+java:S1871'"LThis branch's code block is the same as the block for the branch on line 36.(İÅ»¼şÿÿÿÿ8µé¢õÎ1

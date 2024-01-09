@@ -29,7 +29,6 @@ public class DropboxFrame extends JFrame{
     private InputDropboxFrame inputDropboxFrame;
     private DropboxInput dropboxInput;
     private DropboxHapus dropboxHapus;
-
     private ReportsFrame reportsFrame;
     private PDFReport pdfReport;
 
@@ -40,6 +39,7 @@ public class DropboxFrame extends JFrame{
 
         this.dropboxInput = new DropboxInput(this);
         this.dropboxHapus = new DropboxHapus(this, dropboxDao);
+
         this.pdfReport = new PDFReport(this);
 
         this.labelTitle = new JLabel("Daftar Semua Dropbox");
@@ -49,11 +49,11 @@ public class DropboxFrame extends JFrame{
         this.buttonInputDropbox = new JButton("Input Dropbox");
         this.buttonInputDropbox.setBounds(50, 50, 150, 30);
 
-        this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
-        this.buttonCetakPDF.setBounds(250, 50, 150, 30);
-
         this.buttonDeleteDropbox = new JButton("Delete Dropbox");
-        this.buttonDeleteDropbox.setBounds(450, 50, 150, 30);
+        this.buttonDeleteDropbox.setBounds(250, 50, 150, 30);
+
+        this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
+        this.buttonCetakPDF.setBounds(450, 50, 150, 30);
 
         this.buttonCetakPDF.addActionListener(pdfReport);
 
@@ -127,8 +127,7 @@ public class DropboxFrame extends JFrame{
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void showSuccessMessage(String message, String title) {
-        JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
+    public void showInfoMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
-
 }

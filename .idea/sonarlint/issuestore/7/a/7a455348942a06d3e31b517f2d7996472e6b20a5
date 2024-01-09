@@ -1,10 +1,13 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(ÓŒâÔúÿÿÿÿ8ÖêşìÎ1
 O
-java:S1948"-Make "dropboxList" transient or serializable.(˜áéûÿÿÿÿ8İêşìÎ1
+java:S1948"-Make "dropboxList" transient or serializable.(˜áéûÿÿÿÿ8İêşìÎ1
 K
-java:S1948 ".Make "dropboxInput" transient or serializable.(£èÆå8İêşìÎ1
+java:S1948".Make "dropboxInput" transient or serializable.(£èÆå8İêşìÎ1
 K
-java:S1948!".Make "dropboxHapus" transient or serializable.(¦å 8ŞêşìÎ1
+java:S1948".Make "dropboxHapus" transient or serializable.(¦å 8ŞêşìÎ1
+M
+java:S1948!"+Make "pdfReport" transient or serializable.(Ó»àøÿÿÿÿ8–Æ§òÎ1
 n
-java:S3252'"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8âêşìÎ1
+java:S3252$"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8âêşìÎ1
+M
+java:S1128"+Remove this unused import 'java.awt.event'.(Ã®ÎÙÿÿÿÿÿ8¬Æ§òÎ1

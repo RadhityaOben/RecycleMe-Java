@@ -2,6 +2,8 @@
 l
 java:S2095-"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ùåø8›ÙÀìÎ1
 W
-java:S2209C"5Change this instance-reference to a static reference.(³üá©şÿÿÿÿ8µÙÀìÎ1
+java:S2209A"5Change this instance-reference to a static reference.(¡¤ãñúÿÿÿÿ8éô°óÎ1
 W
-java:S2209Y"5Change this instance-reference to a static reference.(³üá©şÿÿÿÿ8¾ÙÀìÎ1
+java:S2209W"5Change this instance-reference to a static reference.(¡¤ãñúÿÿÿÿ8ìô°óÎ1
+Y
+java:S1128"<Remove this unused import 'com.recycleme.model.jenis.Jenis'.(ÏÊ“Š8ÿô°óÎ1

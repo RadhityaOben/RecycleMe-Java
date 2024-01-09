@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class DropboxTableModel extends AbstractTableModel{
-    private String[] columnNames = {"ID", "Tanggal", "Masyarakat", "Kurir", "Kategori", "Jenis"};
+    private String[] columnNames = {"ID", "Tanggal", "Masyarakat", "Kurir", "Kategori"};
     private List<Dropbox> list;
 
     public DropboxTableModel(List<Dropbox> list) {
@@ -37,8 +37,6 @@ public class DropboxTableModel extends AbstractTableModel{
                 return dropbox.getKurir().getNama();
             case 4:
                 return dropbox.getKategori().getNama();
-            case 5:
-                return dropbox.getJenis();
             default:
                 return "";
         }

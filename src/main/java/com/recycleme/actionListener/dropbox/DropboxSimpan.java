@@ -32,8 +32,20 @@ public class DropboxSimpan implements ActionListener {
         Kurir kurir = inputDropboxFrame.getKurir();
         Kategori kategori = inputDropboxFrame.getKategori();
         Jenis[] jenis = null;
+        //buatkan validasi ketika index == 0
+        if(inputDropboxFrame.getKategori() != null) {
+            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
+            return;
+        } else if (inputDropboxFrame.getKurir() == null){
+            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
+            return;
+        } else if (inputDropboxFrame.getMasyarakat() == null){
+            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
+            return;
+        }
 
-        dropbox = new Dropbox(id, tanggal, masyarakat, kurir, kategori, jenis);
+
+            dropbox = new Dropbox(id, tanggal, masyarakat, kurir, kategori, jenis);
         if(dropboxDao.insert(dropbox) <1) {
             inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
             return;
