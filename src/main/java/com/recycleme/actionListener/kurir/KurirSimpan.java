@@ -31,11 +31,28 @@ public class KurirSimpan implements ActionListener {
         String jenisKendaraan = inputKurirFrame.getJenisKendaraan();
         String kelengkapanBerkas = inputKurirFrame.getKelengkapanBerkas();
 
+        if(nama.equals("")) {
+            inputKurirFrame.showErrorMessage("Nama tidak boleh kosong!");
+            return;
+        }
+
+        if(noTelp.equals("")) {
+            inputKurirFrame.showErrorMessage("No. Telp tidak boleh kosong!");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(inputKurirFrame, "Apakah data yang dimasukkan sudah sesuai?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(confirm == JOptionPane.NO_OPTION) {
+            inputKurirFrame.showInfoMessage("Silahkan periksa kembali!");
+            return;
+        }
+
         kurir = new Kurir(id, nama, noTelp, statusRegistrasi, statusPenjemputan, kelengkapanBerkas, jenisKendaraan);
-        inputKurirFrame.showSuccessMessage("Daftar berhasil! Silahkan tunggu konfirmasi dari admin.");
+        kurirDao.insert(kurir);
+        inputKurirFrame.showSuccessMessage("Kurir berhasil ditambahkan! Tolong konfirmasi status registrasi.");
+        kurir.setId(KurirDao.lastId());
         inputKurirFrame.reset();
         kurirFrame.addKurir(kurir);
-        kurirDao.insert(kurir);
         inputKurirFrame.dispose();
     }
 }
