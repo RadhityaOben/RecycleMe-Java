@@ -1,133 +1,151 @@
 package com.recycleme.frame.dropbox;
 
-import com.recycleme.actionListener.dropbox.DropboxReset;
 import com.recycleme.actionListener.dropbox.DropboxSimpan;
 import com.recycleme.dao.DropboxDao;
+import com.recycleme.dao.KurirDao;
+import com.recycleme.dao.MasyarakatDao;
+import com.recycleme.dao.KategoriDao;
+import com.recycleme.model.kategori.Kategori;
+import com.recycleme.model.kurir.Kurir;
+import com.recycleme.model.masyarakat.Masyarakat;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.List;
 
 public class InputDropboxFrame extends JFrame {
+    private JLabel labelTitle;
 
-    private JLabel labelFrame;
+    private JLabel masyarakatLabel;
+    private JLabel kurirLabel;
+    private JLabel kategoriLabel;
 
-    private JLabel labelNama;
-    private JTextField fieldNama;
-
-    private JLabel labelAlamat;
-    private JTextArea fieldAlamat;
-
-    private JLabel labelMasayarakat;
-    private JTextField fieldMasyarakat;
-
-    private JLabel labelKurir;
-    private JTextField fieldKurir;
-
-    private JLabel labelJenis;
-    private JTextField fieldJenis;
+    private JComboBox masyarakatComboBox;
+    private JComboBox kurirComboBox;
+    private JComboBox kategoriComboBox;
 
     private JButton simpanButton;
     private JButton resetButton;
 
-    public InputDropboxFrame() {
+    private DropboxDao dropboxDao;
+    private DropboxFrame dropboxFrame;
+
+    private MasyarakatDao masyarakatDao = new MasyarakatDao();
+    private KurirDao kurirDao = new KurirDao();
+    private KategoriDao kategoriDao = new KategoriDao();
+
+    private List<Masyarakat> masyarakatList;
+    private List<Kurir> kurirList;
+    private List<Kategori> kategoriList;
+
+    private DropboxSimpan dropboxSimpan;
+
+    public InputDropboxFrame(DropboxFrame frame) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
         this.setSize(500, 600);
+        dropboxDao = new DropboxDao();
 
-        labelFrame = new JLabel("Input Dropbox");
-        labelFrame.setBounds(50, 10, 300, 30);
-        labelFrame.setFont(new Font("Tahoma", 1, 18));
+        dropboxSimpan = new DropboxSimpan(this, dropboxDao, frame);
 
-        labelNama = new JLabel("Nama");
-        labelNama.setBounds(50, 100, 100, 30);
+        dropboxFrame = frame;
 
-        fieldNama = new JTextField();
-        fieldNama.setBounds(200, 100, 200, 30);
+        labelTitle = new JLabel("Input Dropbox");
+        labelTitle.setBounds(50, 10, 300, 30);
+        labelTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
 
-        labelAlamat = new JLabel("Alamat");
-        labelAlamat.setBounds(50, 150, 100, 30);
+        masyarakatLabel = new JLabel("Masyarakat");
+        masyarakatLabel.setBounds(50, 100, 100, 30);
 
-        fieldAlamat = new JTextArea();
-        fieldAlamat.setBounds(200, 150, 200, 100);
+        masyarakatComboBox = new JComboBox();
+        masyarakatComboBox.setBounds(200, 100, 200, 30);
 
-        labelMasayarakat = new JLabel("Masyarakat");
-        labelMasayarakat.setBounds(50, 250, 100, 30);
+        kurirLabel = new JLabel("Kurir");
+        kurirLabel.setBounds(50, 150, 100, 30);
 
-        fieldMasyarakat = new JTextField();
-        fieldMasyarakat.setBounds(200, 250, 200, 30);
+        kurirComboBox = new JComboBox();
+        kurirComboBox.setBounds(200, 150, 200, 30);
 
-        labelKurir = new JLabel("Kurir");
-        labelKurir.setBounds(50, 300, 100, 30);
+        kategoriLabel = new JLabel("Kategori");
+        kategoriLabel.setBounds(50, 200, 100, 30);
 
-        fieldKurir = new JTextField();
-        fieldKurir.setBounds(200, 300, 200, 30);
-
-        labelJenis = new JLabel("Jenis");
-        labelJenis.setBounds(50, 350, 100, 30);
-
-        fieldJenis = new JTextField();
-        fieldJenis.setBounds(200, 350, 200, 30);
+        kategoriComboBox = new JComboBox();
+        kategoriComboBox.setBounds(200, 200, 200, 30);
 
         simpanButton = new JButton("Simpan");
-        simpanButton.setBounds(50, 400, 100, 30);
+        simpanButton.setBounds(50, 250, 100, 30);
 
         resetButton = new JButton("Reset");
-        resetButton.setBounds(200, 400, 100, 30);
-
-        DropboxDao dropboxDao = new DropboxDao();
-        DropboxFrame dropboxFrame = new DropboxFrame(dropboxDao);
-
-        DropboxSimpan dropboxSimpan = new DropboxSimpan(this, dropboxDao, dropboxFrame);
-        DropboxReset dropboxReset = new DropboxReset(this);
+        resetButton.setBounds(200, 250, 100, 30);
 
         simpanButton.addActionListener(dropboxSimpan);
-        resetButton.addActionListener(dropboxReset);
 
-        add(labelFrame);
-        add(labelNama);
-        add(fieldNama);
-        add(labelAlamat);
-        add(fieldAlamat);
-        add(labelMasayarakat);
-        add(fieldMasyarakat);
-        add(labelKurir);
-        add(fieldKurir);
-        add(labelJenis);
-        add(fieldJenis);
-        add(simpanButton);
-        add(resetButton);
+        populateComboBox();
+
+        this.add(labelTitle);
+        this.add(masyarakatLabel);
+        this.add(masyarakatComboBox);
+        this.add(kurirLabel);
+        this.add(kurirComboBox);
+        this.add(kategoriLabel);
+        this.add(kategoriComboBox);
+        this.add(simpanButton);
+        this.add(resetButton);
     }
 
-    public String getNama() {
-        return fieldNama.getText();
+    public void populateComboBox() {
+        masyarakatList = masyarakatDao.findAll();
+        kurirList = kurirDao.findAll();
+        kategoriList = kategoriDao.findAll();
+
+        for(Masyarakat m : masyarakatList) {
+            masyarakatComboBox.addItem(m.getNama());
+        }
+
+        for(Kurir k : kurirList) {
+            kurirComboBox.addItem(k.getNama());
+        }
+
+        for(Kategori k : kategoriList) {
+            kategoriComboBox.addItem(k.getNama());
+        }
     }
 
-    public String getAlamat() {
-        return fieldAlamat.getText();
+    public Masyarakat getMasyarakat() {
+        return masyarakatList.get(masyarakatComboBox.getSelectedIndex());
     }
 
-    public String getMasyarakat() {
-        return fieldMasyarakat.getText();
+    public Kurir getKurir() {
+        return kurirList.get(kurirComboBox.getSelectedIndex());
     }
 
-    public String getKurir() {
-        return fieldKurir.getText();
+    public Kategori getKategori() {
+        return kategoriList.get(kategoriComboBox.getSelectedIndex());
     }
 
-    public String getJenis() {
-        return fieldJenis.getText();
+    public JButton getSimpanButton() {
+        return simpanButton;
     }
 
-    public void showSuccessMessage(String message) {
-        JOptionPane.showMessageDialog(this, message);
+    public JButton getResetButton() {
+        return resetButton;
     }
 
     public void reset() {
-        fieldNama.setText("");
-        fieldAlamat.setText("");
-        fieldMasyarakat.setText("");
-        fieldKurir.setText("");
-        fieldJenis.setText("");
+        masyarakatComboBox.setSelectedIndex(0);
+        kurirComboBox.setSelectedIndex(0);
+        kategoriComboBox.setSelectedIndex(0);
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void showSuccessMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

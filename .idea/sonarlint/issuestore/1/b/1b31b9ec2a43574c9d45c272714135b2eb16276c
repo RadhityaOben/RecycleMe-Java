@@ -1,4 +1,7 @@
 
 l
-java:S20950"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ùåø8×Ş¬Í1
-X	java:S125"<This block of commented-out lines of code should be removed.(Ÿå­Ä8ªÀ«Í1
+java:S2095-"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ùåø8›ÙÀìÎ1
+W
+java:S2209C"5Change this instance-reference to a static reference.(³üá©şÿÿÿÿ8µÙÀìÎ1
+W
+java:S2209Y"5Change this instance-reference to a static reference.(³üá©şÿÿÿÿ8¾ÙÀìÎ1

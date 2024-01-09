@@ -51,3 +51,17 @@ Fsrc/main/java/com/recycleme/frame/masyarakat/InputMasyarakatFrame.java,0\3\033
 Ksrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatSimpan.java,9\6\96ab7dfa033da6b9b674d9568f47ead01bf56d20
 z
 Jsrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatReset.java,7\9\7900d113095f61ad51e8f83720fb80d257dc2dea
+g
+7src/main/java/com/recycleme/frame/jenis/JenisFrame.java,0\3\03a5231da488165c39bbe4d34fff2e58cee8db72
+p
+@src/main/java/com/recycleme/actionListener/jenis/JenisInput.java,b\1\b1692277ed328fa440c838d059879a2f0e99a227
+p
+@src/main/java/com/recycleme/actionListener/jenis/JenisHapus.java,c\5\c584f20a8b2c30e79bf56ec3ebe220e46fe7bee6
+|
+Lsrc/main/java/com/recycleme/actionListener/masyarakat/MasyarakatSetujui.java,e\b\ebe15ad71be7424275ab5489b16386b7d218cc39
+]
+-src/main/java/com/recycleme/dao/JenisDao.java,1\b\1b1e04d548e39ecf9fb59f5f201cb87f096d4ccb
+l
+<src/main/java/com/recycleme/frame/jenis/InputJenisFrame.java,3\e\3e306fe5c11469d235b07aa0bb253cc670627637
+\
+,src/main/java/com/recycleme/db/recycleme.sql,f\7\f7f7bac7a699f45b4dbface89af90234b54d8bb2

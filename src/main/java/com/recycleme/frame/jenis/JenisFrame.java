@@ -1,5 +1,9 @@
 package com.recycleme.frame.jenis;
 
+import com.recycleme.dao.JenisDao;
+import com.recycleme.model.jenis.Jenis;
+import com.recycleme.model.jenis.JenisTableModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,11 +49,13 @@ public class JenisFrame extends JFrame {
         this.buttonDeleteJenis = new JButton("Delete Jenis");
         this.buttonDeleteJenis.setBounds(450, 50, 150, 30);
 
+
         this.jenisInput = new JenisInput(this);
         this.jenisHapus = new JenisHapus(this, jenisDao);
 
         this.buttonInputJenis.addActionListener(jenisInput);
         this.buttonDeleteJenis.addActionListener(jenisHapus);
+
 
         this.jenisList = jenisDao.findAll();
 

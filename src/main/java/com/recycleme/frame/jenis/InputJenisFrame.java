@@ -62,6 +62,7 @@ public class InputJenisFrame extends JFrame {
         simpanButton.setBounds(50, 200, 100, 30);
 
         resetButton = new JButton("Reset");
+
         resetButton.setBounds(200, 200, 100, 30);
 
 //        simpanButton.addActionListener();

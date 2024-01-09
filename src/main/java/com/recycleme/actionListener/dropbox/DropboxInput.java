@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DropboxInput implements ActionListener {
-    private InputDropboxFrame inputDropboxFrame;
     private DropboxFrame dropboxFrame;
 
     public DropboxInput(DropboxFrame dropboxFrame) {
