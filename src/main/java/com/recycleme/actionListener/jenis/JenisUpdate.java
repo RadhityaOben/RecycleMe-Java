@@ -27,13 +27,18 @@ public class JenisUpdate implements ActionListener {
         int poin = editJenisFrame.getPoin();
 
         if(nama.equals("")) {
-            editJenisFrame.showErrorMessage("Nama tidak boleh kotor");
+            editJenisFrame.showErrorMessage("Nama tidak boleh kosong");
+            return;
+        }
+
+        if(poin < 0) {
+            editJenisFrame.showErrorMessage("Poin tidak boleh kurang dari 0");
             return;
         }
 
         jenis = new Jenis(id, nama, kategori, poin);
         if(jenisDao.update(jenis) < 1) {
-            editJenisFrame.showErrorMessage("jenis gagal diupdate");
+            editJenisFrame.showErrorMessage("Jenis gagal diupdate");
             return;
         }
         editJenisFrame.showSuccessMessage("Jenis berhasil diupdate");
