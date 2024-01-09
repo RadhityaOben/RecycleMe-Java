@@ -26,6 +26,21 @@ public class JenisSimpan implements ActionListener {
         Kategori kategori = inputJenisFrame.getKategori();
         int poin = inputJenisFrame.getPoin();
 
+        if(nama.equals("")) {
+            inputJenisFrame.showErrorMessage("Nama tidak boleh kosong!");
+            return;
+        }
+
+        if(jenisFrame.isJenisExist(nama)) {
+            inputJenisFrame.showErrorMessage("Nama jenis sudah ada!");
+            return;
+        }
+
+        if(poin < 0) {
+            inputJenisFrame.showErrorMessage("Poin tidak boleh kurang dari 0!");
+            return;
+        }
+
         jenis = new Jenis(id, nama, kategori, poin);
         if(jenisDao.insert(jenis) <1) {
             inputJenisFrame.showErrorMessage("Jenis gagal ditambahkan.");

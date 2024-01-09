@@ -60,7 +60,7 @@ public class JenisDao {
         return result;
     }
 
-    public List<Jenis> findAll() {
+    public static List<Jenis> findAll() {
         List<Jenis> list = new ArrayList<>();
         try (Connection connection = MySqlConnection.getInstance().getConnection();
              Statement statement = connection.createStatement();) {

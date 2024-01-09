@@ -2,6 +2,7 @@ package com.recycleme.frame.jenis;
 
 import com.recycleme.actionListener.jenis.JenisEdit;
 import com.recycleme.dao.JenisDao;
+import com.recycleme.dao.KategoriDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.JenisTableModel;
 
@@ -15,6 +16,7 @@ import com.recycleme.actionListener.jenis.JenisInput;
 import com.recycleme.dao.JenisDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.JenisTableModel;
+import com.recycleme.model.kategori.Kategori;
 
 public class JenisFrame extends JFrame {
     private JLabel labelTitle;
@@ -102,6 +104,15 @@ public class JenisFrame extends JFrame {
             inputJenisFrame = new InputJenisFrame(this);
         }
         inputJenisFrame.setVisible(true);
+    }
+
+    public static boolean isJenisExist(String nama) {
+        for(Jenis jenis : JenisDao.findAll()) {
+            if(jenis.getNama().equals(nama)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public JFrame getFrame() {
