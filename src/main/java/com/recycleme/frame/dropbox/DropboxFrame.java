@@ -9,9 +9,9 @@ import java.util.List;
 //import com.recycleme.actionListener.dropbox.DropboxInput;
 import com.recycleme.actionListener.dropbox.DropboxHapus;
 import com.recycleme.actionListener.dropbox.DropboxInput;
-import com.recycleme.actionListener.reports.PDFReport;
+//import com.recycleme.actionListener.reports.PDFReport;
 import com.recycleme.dao.DropboxDao;
-import com.recycleme.frame.reports.ReportsFrame;
+//import com.recycleme.frame.reports.ReportsFrame;
 import com.recycleme.model.dropbox.Dropbox;
 import com.recycleme.model.dropbox.DropboxTableModel;
 
@@ -32,8 +32,8 @@ public class DropboxFrame extends JFrame{
     private DropboxInput dropboxInput;
     private DropboxHapus dropboxHapus;
 
-    private ReportsFrame reportsFrame;
-    private PDFReport pdfReport;
+//    private ReportsFrame reportsFrame;
+//    private PDFReport pdfReport;
 
     public DropboxFrame(DropboxDao dropboxDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,7 +42,7 @@ public class DropboxFrame extends JFrame{
 
         this.dropboxInput = new DropboxInput(this);
         this.dropboxHapus = new DropboxHapus(this, dropboxDao);
-        this.pdfReport = new PDFReport(this);
+//        this.pdfReport = new PDFReport(this);
 
         this.labelTitle = new JLabel("Daftar Semua Dropbox");
         this.labelTitle.setBounds(50, 10, 300, 30);
@@ -57,7 +57,7 @@ public class DropboxFrame extends JFrame{
         this.buttonDeleteDropbox = new JButton("Delete Dropbox");
         this.buttonDeleteDropbox.setBounds(450, 50, 150, 30);
 
-        this.buttonCetakPDF.addActionListener(pdfReport);
+//        this.buttonCetakPDF.addActionListener(pdfReport);
 
         this.buttonInputDropbox.addActionListener(dropboxInput);
         this.buttonDeleteDropbox.addActionListener(dropboxHapus);
@@ -98,12 +98,12 @@ public class DropboxFrame extends JFrame{
         return tableDropbox.getSelectedRow();
     }
 
-    public void showCetakPDF() {
-        if(reportsFrame == null) {
-            reportsFrame = new ReportsFrame();
-        }
-        reportsFrame.setVisible(true);
-    }
+//    public void showCetakPDF() {
+//        if(reportsFrame == null) {
+//            reportsFrame = new ReportsFrame();
+//        }
+//        reportsFrame.setVisible(true);
+//    }
 
     public void showInputDropboxFrame() {
         if(inputDropboxFrame == null) {
