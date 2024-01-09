@@ -29,9 +29,8 @@ public class DropboxFrame extends JFrame{
     private InputDropboxFrame inputDropboxFrame;
     private DropboxInput dropboxInput;
     private DropboxHapus dropboxHapus;
-//    TODO: uncomment this when PDFReport is ready
-//    private ReportsFrame reportsFrame;
-//    private PDFReport pdfReport;
+    private ReportsFrame reportsFrame;
+    private PDFReport pdfReport;
 
     public DropboxFrame(DropboxDao dropboxDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,8 +40,7 @@ public class DropboxFrame extends JFrame{
         this.dropboxInput = new DropboxInput(this);
         this.dropboxHapus = new DropboxHapus(this, dropboxDao);
 
-//        TODO: uncomment this when PDFReport is ready
-//        this.pdfReport = new PDFReport(this);
+        this.pdfReport = new PDFReport(this);
 
         this.labelTitle = new JLabel("Daftar Semua Dropbox");
         this.labelTitle.setBounds(50, 10, 300, 30);
@@ -57,8 +55,7 @@ public class DropboxFrame extends JFrame{
         this.buttonCetakPDF = new JButton("Cetak Laporan PDF");
         this.buttonCetakPDF.setBounds(450, 50, 150, 30);
 
-//        TODO: uncomment this when PDFReport is ready
-//        this.buttonCetakPDF.addActionListener(pdfReport);
+        this.buttonCetakPDF.addActionListener(pdfReport);
 
         this.buttonInputDropbox.addActionListener(dropboxInput);
         this.buttonDeleteDropbox.addActionListener(dropboxHapus);
@@ -99,13 +96,12 @@ public class DropboxFrame extends JFrame{
         return tableDropbox.getSelectedRow();
     }
 
-//    TODO: uncomment this when PDFReport is ready
-//    public void showCetakPDF() {
-//        if(reportsFrame == null) {
-//            reportsFrame = new ReportsFrame();
-//        }
-//        reportsFrame.setVisible(true);
-//    }
+    public void showCetakPDF() {
+        if(reportsFrame == null) {
+            reportsFrame = new ReportsFrame();
+        }
+        reportsFrame.setVisible(true);
+    }
 
     public void showInputDropboxFrame() {
         if(inputDropboxFrame == null) {
@@ -131,8 +127,7 @@ public class DropboxFrame extends JFrame{
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void showSuccessMessage(String message, String title) {
-        JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
+    public void showInfoMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
-
 }

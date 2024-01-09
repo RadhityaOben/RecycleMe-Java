@@ -30,6 +30,6 @@ java:S1948("/Make "dropboxSimpan" transient or serializable.(°Òõ»8¦úìÎ1
 n
 java:S3252+"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8¬úìÎ1
 W
-java:S2209c"5Change this instance-reference to a static reference.(èß£åşÿÿÿÿ8¹úìÎ1
+java:S2209d"5Change this instance-reference to a static reference.(èß£åşÿÿÿÿ8¹úìÎ1
 R
 java:S1068"0Remove this unused "dropboxFrame" private field.(ûÎòÇøÿÿÿÿ8ÇúìÎ1

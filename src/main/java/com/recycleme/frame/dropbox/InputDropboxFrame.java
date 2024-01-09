@@ -43,7 +43,7 @@ public class InputDropboxFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        this.setSize(500, 600);
+        this.setSize(500, 350);
         dropboxDao = new DropboxDao();
 
         dropboxSimpan = new DropboxSimpan(this, dropboxDao, frame);
@@ -79,6 +79,7 @@ public class InputDropboxFrame extends JFrame {
         resetButton.setBounds(200, 250, 100, 30);
 
         simpanButton.addActionListener(dropboxSimpan);
+        resetButton.addActionListener(new com.recycleme.actionListener.dropbox.DropboxReset(this));
 
         populateComboBox();
 
