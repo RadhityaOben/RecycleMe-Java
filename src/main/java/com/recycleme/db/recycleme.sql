@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 08, 2024 at 05:34 PM
+-- Generation Time: Jan 09, 2024 at 10:34 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.12
 
@@ -65,6 +65,7 @@ CREATE TABLE `dropbox_jenis` (
 CREATE TABLE `jenis` (
   `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
+  `poin` int NOT NULL,
   `id_kategori` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -72,10 +73,10 @@ CREATE TABLE `jenis` (
 -- Dumping data for table `jenis`
 --
 
-INSERT INTO `jenis` (`id`, `nama`, `id_kategori`) VALUES
-(1, 'Kompor Listrik', 1),
-(2, 'Komputer', 5),
-(3, 'Pendingin', 7);
+INSERT INTO `jenis` (`id`, `nama`, `poin`, `id_kategori`) VALUES
+(1, 'Kompor Listrik', 0, 1),
+(2, 'Komputer', 0, 5),
+(3, 'Pendingin', 0, 7);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,7 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id`, `nama`) VALUES
 (1, 'Rumah Tangga'),
-(5, 'Kantor'),
+(5, 'Rumah'),
 (6, 'Dapur'),
 (7, 'Kamar');
 
@@ -119,8 +120,8 @@ CREATE TABLE `kurir` (
 --
 
 INSERT INTO `kurir` (`id`, `nama`, `no_hp`, `status_registrasi`, `status_penjemputan`, `kelengkapan_berkas`, `jenis_kendaraan`) VALUES
-(2, 'werqwrq', 'werwefef', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2'),
-(3, 'egvwefg2e', 'wergrwegrg', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2');
+(2, 'Asep', '0938494865', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2'),
+(3, 'Aceng', '0884965665', 'Diproses', 'Tidak ada', 'Lengkap', 'Roda 2');
 
 -- --------------------------------------------------------
 
@@ -149,9 +150,7 @@ INSERT INTO `masyarakat` (`id`, `nama`, `alamat`, `email`, `no_hp`, `status_regi
 (8, 'Rivan', 'Jl. Rivan', 'rivan@mail.mail', '2039480234', 'Disetujui', 'Tidak ada', 'Debit', 0),
 (9, 'Lanang', 'Jl. Lanang', 'lanang@mail.lanang', '3459086', 'Disetujui', 'Tidak ada', 'Kredit', 0),
 (11, 'Ammar', 'Jl. Ammar', 'ammar@mail.com', '23440983456', 'Ditolak', 'Tidak ada', 'Cash', 0),
-(16, 'Iqbal', 'jl. iqbal	', 'iqbal@mail.com', '340598345', 'Disetujui', 'Tidak ada', 'Cash', 0),
-(26, 'wfqwfqwe', 'fwqefwqfwqefw', 'fwef', 'wfwqfwf', 'Disetujui', 'Tidak ada', 'Cash', 0),
-(27, 'wfqw', 'fewfq', 'efqwefwefw', 'fqwfwf', 'Ditolak', 'Tidak ada', 'Cash', 0);
+(16, 'Iqbal', 'jl. iqbal	', 'iqbal@mail.com', '340598345', 'Disetujui', 'Tidak ada', 'Cash', 0);
 
 --
 -- Indexes for dumped tables
