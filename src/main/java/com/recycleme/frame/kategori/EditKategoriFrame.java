@@ -1,7 +1,6 @@
 package com.recycleme.frame.kategori;
 
 import com.recycleme.actionListener.kategori.KategoriDefault;
-import com.recycleme.actionListener.kategori.KategoriReset;
 import com.recycleme.actionListener.kategori.KategoriUpdate;
 import com.recycleme.dao.KategoriDao;
 import com.recycleme.model.kategori.Kategori;
