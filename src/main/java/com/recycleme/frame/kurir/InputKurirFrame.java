@@ -33,7 +33,7 @@ public class InputKurirFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        this.setSize(500, 600);
+        this.setSize(500, 480);
         kurirDao = new KurirDao();
         kurirFrame = frame;
 
@@ -69,9 +69,9 @@ public class InputKurirFrame extends JFrame {
         kelengkapanBerkasComboBox.setBounds(200, 250, 200, 30);
 
         simpanButton = new JButton("Simpan");
-        simpanButton.setBounds(50, 500, 100, 30);
+        simpanButton.setBounds(50, 340, 100, 30);
         resetButton = new JButton("Reset");
-        resetButton.setBounds(200, 500, 100, 30);
+        resetButton.setBounds(200, 340, 100, 30);
 
         simpanButton.addActionListener(KurirSimpanActionListener);
         resetButton.addActionListener(KurirResetActionListener);

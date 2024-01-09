@@ -38,7 +38,7 @@ public class KurirFrame extends JFrame {
 
     public KurirFrame(KurirDao kurirDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(1000, 500);
+        this.setSize(1000, 460);
         this.setLayout(null);
 
         this.labelTitle = new JLabel("Daftar Semua Kurir");
