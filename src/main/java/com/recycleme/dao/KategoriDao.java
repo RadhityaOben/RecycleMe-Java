@@ -68,7 +68,7 @@ public class KategoriDao {
         return result;
     }
 
-    public List<Kategori> findAll() {
+    public static List<Kategori> findAll() {
         List<Kategori> list = new ArrayList<>();
         try (Connection connection = MySqlConnection.getInstance().getConnection();
              Statement statement = connection.createStatement();) {
@@ -136,4 +136,5 @@ public class KategoriDao {
 
         return kategori;
     }
+
 }

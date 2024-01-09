@@ -26,4 +26,6 @@ public class Kategori {
     public void setNama(String nama) {
         this.nama = nama;
     }
+
+
 }
