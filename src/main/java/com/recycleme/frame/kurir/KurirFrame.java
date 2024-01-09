@@ -2,6 +2,8 @@ package com.recycleme.frame.kurir;
 
 import com.recycleme.actionListener.kurir.KurirHapus;
 import com.recycleme.actionListener.kurir.KurirInput;
+import com.recycleme.actionListener.kurir.KurirSetujui;
+import com.recycleme.actionListener.kurir.KurirTolak;
 import com.recycleme.dao.KurirDao;
 import com.recycleme.frame.kurir.InputKurirFrame;
 import com.recycleme.model.kurir.Kurir;
@@ -16,6 +18,8 @@ public class KurirFrame extends JFrame {
 
     private JButton buttonInputKurir;
     private JButton buttonEditKurir;
+
+    private JButton buttonTolak;
     private JButton buttonSetujui;
     private JButton buttonDeleteKurir;
 
@@ -28,6 +32,9 @@ public class KurirFrame extends JFrame {
     private KurirTableModel tableModel;
     private KurirInput kurirInput;
     private KurirHapus kurirHapus;
+    private KurirSetujui kurirSetujui;
+    private KurirTolak kurirTolak;
+
 
     public KurirFrame(KurirDao kurirDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,21 +47,30 @@ public class KurirFrame extends JFrame {
 
         this.buttonInputKurir = new JButton("Input Kurir");
         this.buttonInputKurir.setBounds(50, 50, 150, 30);
-
-        this.buttonEditKurir = new JButton("Edit Kurir");
-        this.buttonEditKurir.setBounds(250, 50, 150, 30);
-
-        this.buttonSetujui = new JButton("Setujui Registrasi");
-        this.buttonSetujui.setBounds(450, 50, 150, 30);
+        this.buttonInputKurir.addActionListener(kurirInput);
 
         this.buttonDeleteKurir = new JButton("Delete Kurir");
-        this.buttonDeleteKurir.setBounds(650, 50, 150, 30);
+        this.buttonDeleteKurir.setBounds(250, 50, 150, 30);
+        this.buttonDeleteKurir.addActionListener(kurirHapus);
+
+        this.buttonSetujui = new JButton("Setujui Registrasi");
+        this.buttonSetujui.setBounds(600, 50, 150, 30);
+        this.buttonSetujui.addActionListener(kurirSetujui);
+
+        this.buttonTolak = new JButton("Tolak Registrasi");
+        this.buttonTolak.setBounds(800, 50, 150, 30);
+        this.buttonTolak.addActionListener(kurirTolak);
+
 
         this.kurirInput = new KurirInput(this);
         this.kurirHapus = new KurirHapus(this, kurirDao);
+        this.kurirSetujui = new KurirSetujui(this, kurirDao);
+        this.kurirTolak = new KurirTolak(this, kurirDao);
 
         this.buttonInputKurir.addActionListener(kurirInput);
         this.buttonDeleteKurir.addActionListener(kurirHapus);
+        this.buttonSetujui.addActionListener(kurirSetujui);
+        this.buttonTolak.addActionListener(kurirTolak);
 
         this.kurirDao = kurirDao;
         this.kurirList = kurirDao.findAll();
@@ -68,14 +84,30 @@ public class KurirFrame extends JFrame {
 
         this.add(labelTitle);
         this.add(buttonInputKurir);
-        this.add(buttonEditKurir);
         this.add(buttonSetujui);
+        this.add(buttonTolak);
         this.add(buttonDeleteKurir);
         this.add(scrollPane);
     }
 
     public int getSelectedKurirId() {
+        int row = tableKurir.getSelectedRow();
+        int col = 0;
+        return (int) tableKurir.getValueAt(row, col);
+    }
+
+    public int getSelectedKurirRow() {
         return tableKurir.getSelectedRow();
+    }
+
+    public String getSelectedKurirStatusRegistrasi() {
+        int row = tableKurir.getSelectedRow();
+        int col = 3;
+        return (String) tableKurir.getValueAt(row, col);
+    }
+
+    public void updateKurir(int row, int col, Kurir kurir) {
+        tableModel.update(row, col, kurir);
     }
 
     public JButton getButtonInputKurir() {
@@ -88,6 +120,10 @@ public class KurirFrame extends JFrame {
 
     public JButton getButtonSetujui() {
         return buttonSetujui;
+    }
+
+    public JButton getButtonTolak() {
+        return buttonTolak;
     }
 
     public JButton getButtonDeleteKurir() {
