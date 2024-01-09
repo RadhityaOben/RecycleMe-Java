@@ -17,7 +17,7 @@ public class DropboxHapus implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == dropboxFrame.getButtonDeleteDropBox()) {
+        if(e.getSource() == dropboxFrame.getButtonDeleteDropbox()) {
             int id = dropboxFrame.getSelectedDropboxId();
             if(dropboxDao.delete(id) == 0) {
                 dropboxFrame.showErrorMessage("Data gagal dihapus!");

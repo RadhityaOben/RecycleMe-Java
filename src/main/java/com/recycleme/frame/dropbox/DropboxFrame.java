@@ -105,7 +105,7 @@ public class DropboxFrame extends JFrame{
         reportsFrame.setVisible(true);
     }
 
-    public void showInputDropbox() {
+    public void showInputDropboxFrame() {
         if(inputDropboxFrame == null) {
             inputDropboxFrame = new InputDropboxFrame(this);
         }
