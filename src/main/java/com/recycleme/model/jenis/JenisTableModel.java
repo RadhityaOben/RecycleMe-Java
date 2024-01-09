@@ -4,7 +4,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class JenisTableModel extends AbstractTableModel{
-    private String[] columnNames = {"ID", "Nama", "Kategori"};
+    private String[] columnNames = {"ID", "Nama", "Kategori", "Poin"};
     private List<Jenis> list;
 
     public JenisTableModel(List<Jenis> list) {
@@ -32,6 +32,8 @@ public class JenisTableModel extends AbstractTableModel{
                 return jenis.getNama();
             case 2:
                 return jenis.getKategori().getNama();
+            case 3:
+                return jenis.getPoin();
             default:
                 return "";
         }
@@ -57,6 +59,8 @@ public class JenisTableModel extends AbstractTableModel{
                 break;
             case 2:
                 jenis.getKategori().setNama(value);
+            case 3:
+                jenis.setPoin(Integer.parseInt(value));
                 break;
         }
         list.set(row, jenis);

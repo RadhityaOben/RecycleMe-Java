@@ -24,8 +24,9 @@ public class JenisSimpan implements ActionListener {
         int id = JenisDao.lastId() + 1;
         String nama = inputJenisFrame.getNama();
         Kategori kategori = inputJenisFrame.getKategori();
+        int poin = inputJenisFrame.getPoin();
 
-        jenis = new Jenis(id, nama, kategori);
+        jenis = new Jenis(id, nama, kategori, poin);
         if(jenisDao.insert(jenis) <1) {
             inputJenisFrame.showErrorMessage("Jenis gagal ditambahkan.");
             return;
