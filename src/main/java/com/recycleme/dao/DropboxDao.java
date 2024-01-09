@@ -9,44 +9,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DropboxDao {
-    public int insert(Dropbox dropbox) {
+
+    private int executeUpdate(String query, Dropbox dropbox) {
         int result = -1;
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO dropbox " +
-                            "(id, tanggal, id_masyarakat, id_kurir, id_kategori)" +
-                            "VALUES (?, ?, ?, ?, ?)"
-            );
+        try (Connection connection = MySqlConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, dropbox.getId());
             statement.setDate(2, dropbox.getTanggal());
             statement.setInt(3, dropbox.getMasyarakat().getId());
             statement.setInt(4, dropbox.getKurir().getId());
             statement.setInt(5, dropbox.getKategori().getId());
-
             result = statement.executeUpdate();
-        } catch(Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    public int update(Dropbox dropbox) {
-        int result = -1;
-        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE dropbox SET tanggal = ?, id_masyarakat = ?, id_kurir = ?, id_kategori = ? WHERE id = ?"
-            );
-            statement.setDate(1, dropbox.getTanggal());
-            statement.setInt(2, dropbox.getMasyarakat().getId());
-            statement.setInt(3, dropbox.getKurir().getId());
-            statement.setInt(4, dropbox.getKategori().getId());
-            statement.setInt(5, dropbox.getId());
+    public int insert(Dropbox dropbox) {
+        return executeUpdate(
+                  "INSERT INTO dropbox " +
+                        "(id, tanggal, id_masyarakat, id_kurir, id_kategori) VALUES (?, ?, ?, ?, ?)", dropbox
+        );
+    }
 
-            result = statement.executeUpdate();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public int update(Dropbox dropbox) {
+        return executeUpdate(
+                  "UPDATE dropbox SET tanggal = ?, id_masyarakat = ?, id_kurir = ?, id_kategori = ? WHERE id = ?", dropbox
+        );
     }
 
     public int delete(int id) {
