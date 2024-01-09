@@ -99,6 +99,10 @@ public class InputDropboxFrame extends JFrame {
         kurirList = kurirDao.findAll();
         kategoriList = kategoriDao.findAll();
 
+        masyarakatComboBox.addItem("Pilih Masyarakat");
+        kurirComboBox.addItem("Pilih Kurir");
+        kategoriComboBox.addItem("Pilih Kategori");
+
         for(Masyarakat m : masyarakatList) {
             masyarakatComboBox.addItem(m.getNama());
         }
