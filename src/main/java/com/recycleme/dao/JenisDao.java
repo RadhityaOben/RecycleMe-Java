@@ -36,8 +36,8 @@ public class JenisDao {
             );
             statement.setString(1, jenis.getNama());
             statement.setInt(2, jenis.getKategori().getId());
-            statement.setInt(3, jenis.getId());
-            statement.setInt(4, jenis.getPoin());
+            statement.setInt(3, jenis.getPoin());
+            statement.setInt(4, jenis.getId());
 
             result = statement.executeUpdate();
         } catch(Exception e) {
@@ -124,7 +124,6 @@ public class JenisDao {
             if(resultSet.next()) {
                 jenis.setId(resultSet.getInt("id"));
                 jenis.setNama(resultSet.getString("nama"));
-                jenis.getKategori().setId(resultSet.getInt("id_kategori"));
                 jenis.setPoin(resultSet.getInt("poin"));
             }
         } catch(Exception e) {

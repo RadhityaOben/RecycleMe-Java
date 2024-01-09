@@ -14,21 +14,14 @@ public class EditKategoriFrame extends JFrame{
     private JLabel labelFrame;
 
     private JLabel namaLabel;
-
     private JTextField namaField;
 
     private JButton simpanButton;
-
     private JButton resetButton;
 
     private KategoriDao kategoriDao;
-
     private KategoriFrame kategoriFrame;
-
-    private JComboBox jenisKategoriSampahElektronikComboBox = new JComboBox();
-
     private Kategori oldKategori;
-
 
     public EditKategoriFrame(KategoriFrame frame, int id) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -63,7 +56,6 @@ public class EditKategoriFrame extends JFrame{
         simpanButton.addActionListener(KategoriUpdateActionListener);
         resetButton.addActionListener(KategoriResetActionListener);
 
-        populateJenisKategoriSampahElektronikComboBox();
 
         add(labelFrame);
         add(namaLabel);
@@ -101,17 +93,5 @@ public class EditKategoriFrame extends JFrame{
     public void defaultValue() {
         namaField.setText(oldKategori.getNama());
     }
-
-    public void populateJenisKategoriSampahElektronikComboBox() {
-        jenisKategoriSampahElektronikComboBox.removeAllItems();
-        jenisKategoriSampahElektronikComboBox.addItem("Pilih Jenis Kategori Sampah Elektronik");
-        jenisKategoriSampahElektronikComboBox.addItem("Handphone");
-        jenisKategoriSampahElektronikComboBox.addItem("Laptop");
-        jenisKategoriSampahElektronikComboBox.addItem("Televisi");
-        jenisKategoriSampahElektronikComboBox.addItem("Kulkas");
-        jenisKategoriSampahElektronikComboBox.addItem("Mesin Cuci");
-    }
-
-
 
 }

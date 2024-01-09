@@ -7,6 +7,7 @@ import com.recycleme.actionListener.jenis.JenisUpdate;
 import com.recycleme.actionListener.jenis.JenisDefault;
 import com.recycleme.actionListener.jenis.JenisUpdate;
 import com.recycleme.dao.JenisDao;
+import com.recycleme.dao.KategoriDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.dao.JenisDao;
@@ -25,18 +26,18 @@ public class EditJenisFrame extends JFrame {
     private JButton simpanButton;
     private JButton resetButton;
 
-    private JLabel jenisLabel;
-    private JComboBox jenisComboBox;
-
-    private JenisDao jenisDao;
-    private JenisFrame jenisFrame;
-
-    private List<Jenis> jenisList;
+    private JLabel kategoriLabel;
+    private JComboBox kategoriComboBox;
 
     private JLabel poinLabel;
     private JTextField poinField;
+
+    private JenisDao jenisDao;
+    private JenisFrame jenisFrame;
     private Jenis oldJenis;
 
+    private KategoriDao kategoriDao;
+    private List<Kategori> kategoriList;
 
     public EditJenisFrame(JenisFrame frame, int id) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -47,6 +48,8 @@ public class EditJenisFrame extends JFrame {
         jenisFrame = frame;
 
         oldJenis = jenisDao.findById(id);
+        kategoriDao = new KategoriDao();
+        kategoriList = kategoriDao.findAll();
 
         JenisUpdate jenisUpdateActionListener = new JenisUpdate(this, jenisDao, jenisFrame);
         JenisDefault jenisResetActionListener = new JenisDefault(this);
@@ -62,17 +65,18 @@ public class EditJenisFrame extends JFrame {
         namaField.setText(oldJenis.getNama());
         namaField.setBounds(200, 100, 200, 30);
 
-        jenisLabel = new JLabel("Jenis");
-        jenisLabel.setBounds(50, 150, 100, 30);
+        kategoriLabel = new JLabel("Jenis");
+        kategoriLabel.setBounds(50, 150, 100, 30);
 
-        jenisComboBox = new JComboBox();
-
-        jenisComboBox.setBounds(200, 150, 200, 30);
+        kategoriComboBox = new JComboBox();
+        kategoriComboBox.setBounds(200, 150, 200, 30);
+        populateKategoriComboBox(kategoriList);
 
         poinLabel = new JLabel("Jumlah Poin");
         poinLabel.setBounds(50, 200, 100, 30);
 
         poinField = new JTextField();
+        poinField.setText(Integer.toString(oldJenis.getPoin()));
         poinField.setBounds(200, 200, 200, 30);
 
         simpanButton = new JButton("Simpan");
@@ -81,36 +85,40 @@ public class EditJenisFrame extends JFrame {
         resetButton = new JButton("Reset");
         resetButton.setBounds(200, 250, 100, 30);
 
-//        simpanButton.addActionListener();
         resetButton.addActionListener(jenisResetActionListener);
         simpanButton.addActionListener(jenisUpdateActionListener);
-
-        populateJenisComboBox();
 
         this.add(labelFrame);
         this.add(namaLabel);
         this.add(namaField);
-        this.add(jenisLabel);
-        this.add(jenisComboBox);
+        this.add(kategoriLabel);
+        this.add(kategoriComboBox);
         this.add(poinLabel);
         this.add(poinField);
         this.add(simpanButton);
         this.add(resetButton);
     }
 
-    public void populateJenisComboBox() {
-        jenisList = jenisDao.findAll();
-        jenisList.forEach(jenis -> {
-            jenisComboBox.addItem(jenis.getNama());
-        });
+    public void populateKategoriComboBox(List<Kategori> kategoriList) {
+        for(Kategori kategori : kategoriList) {
+            kategoriComboBox.addItem(kategori.getNama());
+        }
+    }
+
+    public int getId() {
+        return oldJenis.getId();
     }
 
     public String getNama() {
         return namaField.getText();
     }
 
-    public Jenis getJenis() {
-        return jenisList.get(jenisComboBox.getSelectedIndex());
+    public Kategori getKategori() {
+        return kategoriList.get(kategoriComboBox.getSelectedIndex());
+    }
+
+    public int getPoin() {
+        return Integer.parseInt(poinField.getText());
     }
 
     public JButton getSimpanButton() {
@@ -137,29 +145,26 @@ public class EditJenisFrame extends JFrame {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public int getId() {
-        return oldJenis.getId();
-    }
-    public int getPoin() {
-        return Integer.parseInt(poinField.getText());
-    }
-
-    public Kategori getKategori() {
-        return oldJenis.getKategori();
-    }
-
-    public String nama() {
-        return oldJenis.getNama();
-    }
-
     public void defaultValue() {
         namaField.setText(oldJenis.getNama());
-        for(int i = 0; i < jenisComboBox.getItemCount(); i++) {
-            if(jenisComboBox.getItemAt(i) == oldJenis.getKategori().getNama()) {
-                jenisComboBox.setSelectedIndex(i);
+        for(int i = 0; i < kategoriComboBox.getItemCount(); i++) {
+            if(kategoriComboBox.getItemAt(i) == oldJenis.getKategori().getNama()) {
+                kategoriComboBox.setSelectedIndex(i);
                 break;
             }
         }
         poinField.setText(Integer.toString(oldJenis.getPoin()));
+    }
+
+    public String getOldNama() {
+        return oldJenis.getNama();
+    }
+
+    public Kategori getOldKategori() {
+        return oldJenis.getKategori();
+    }
+
+    public int getOldPoin() {
+        return oldJenis.getPoin();
     }
 }
