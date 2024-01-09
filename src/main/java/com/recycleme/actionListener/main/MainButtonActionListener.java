@@ -21,6 +21,9 @@ public class MainButtonActionListener implements ActionListener {
         if (e.getSource() == mainFrame.getButtonKategori()) {
             mainFrame.showKategoriFrame();
         }
+        if (e.getSource() == mainFrame.getButtonJenis()) {
+            mainFrame.showJenisFrame();
+        }
         if (e.getSource() == mainFrame.getButtonDropbox()) {
             mainFrame.showDropboxFrame();
         }
