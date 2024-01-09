@@ -6,5 +6,17 @@ K
 java:S1948 ".Make "dropboxInput" transient or serializable.(£èÆå8İêşìÎ1
 K
 java:S1948!".Make "dropboxHapus" transient or serializable.(¦å 8ŞêşìÎ1
+W	java:S125#"<This block of commented-out lines of code should be removed.(ÆŞùl8×ÂØîÎ1
+T
+java:S1135""2Complete the task associated to this TODO comment.(ÎÚ® şÿÿÿÿ8ŒÈÙîÎ1
 n
 java:S3252'"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(ÑÓŸƒûÿÿÿÿ8âêşìÎ1
+X	java:S125/"<This block of commented-out lines of code should be removed.(¤Ï…¸8ä×õñÎ1
+T
+java:S1135."2Complete the task associated to this TODO comment.(ÎÚ® şÿÿÿÿ8§ëÛîÎ1
+]	java:S125?"<This block of commented-out lines of code should be removed.(øŒ˜®úÿÿÿÿ8ú¹òñÎ1
+T
+java:S1135>"2Complete the task associated to this TODO comment.(ÎÚ® şÿÿÿÿ8²õôñÎ1
+]	java:S125i"<This block of commented-out lines of code should be removed.(çóèíûÿÿÿÿ8±öØîÎ1
+T
+java:S1135h"2Complete the task associated to this TODO comment.(ÎÚ® şÿÿÿÿ8Š öñÎ1
