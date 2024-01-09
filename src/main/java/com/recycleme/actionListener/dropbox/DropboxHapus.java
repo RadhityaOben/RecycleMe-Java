@@ -19,12 +19,12 @@ public class DropboxHapus implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == dropboxFrame.getButtonDeleteDropbox()) {
-            int id = dropboxFrame.getSelectedDropboxId();
             int row = dropboxFrame.getSelectedDropboxRow();
             if(row == -1) {
                 dropboxFrame.showErrorMessage("Pilih dropbox terlebih dahulu!");
                 return;
             }
+            int id = dropboxFrame.getSelectedDropboxId();
 
             int confirm = JOptionPane.showConfirmDialog(dropboxFrame, "Apakah anda yakin ingin menghapus dropbox " +
                             "ini?",

@@ -37,6 +37,8 @@ public class KurirHapus implements ActionListener {
                 return;
             }
 
+            System.out.println(id);
+
             if(kurirDao.delete(id) == 0) {
                 kurirFrame.showErrorMessage("Data gagal dihapus!");
                 return;

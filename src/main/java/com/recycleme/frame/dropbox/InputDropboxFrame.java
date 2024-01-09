@@ -117,15 +117,18 @@ public class InputDropboxFrame extends JFrame {
     }
 
     public Masyarakat getMasyarakat() {
-        return masyarakatList.get(masyarakatComboBox.getSelectedIndex());
+        if(masyarakatComboBox.getSelectedIndex() == 0) return null;
+        return masyarakatList.get(masyarakatComboBox.getSelectedIndex() - 1);
     }
 
     public Kurir getKurir() {
-        return kurirList.get(kurirComboBox.getSelectedIndex());
+        if(kurirComboBox.getSelectedIndex() == 0) return null;
+        return kurirList.get(kurirComboBox.getSelectedIndex() - 1);
     }
 
     public Kategori getKategori() {
-        return kategoriList.get(kategoriComboBox.getSelectedIndex());
+        if (kategoriComboBox.getSelectedIndex() == 0) return null;
+        return kategoriList.get(kategoriComboBox.getSelectedIndex() - 1);
     }
 
     public JButton getSimpanButton() {

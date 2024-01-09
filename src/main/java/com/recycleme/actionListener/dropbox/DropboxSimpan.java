@@ -26,26 +26,32 @@ public class DropboxSimpan implements ActionListener {
     }
         @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == inputDropboxFrame.getSimpanButton()) {
+        if(inputDropboxFrame.getMasyarakat() == null) {
+            inputDropboxFrame.showErrorMessage("Masyarakat belum dipilih.");
+            return;
+        }
+        if(inputDropboxFrame.getKurir() == null) {
+            inputDropboxFrame.showErrorMessage("Kurir belum dipilih.");
+            return;
+        }
+        if(inputDropboxFrame.getKategori() == null) {
+            inputDropboxFrame.showErrorMessage("Kategori belum dipilih.");
+            return;
+        }
+
         int id = DropboxDao.lastId() + 1;
         Date tanggal = new Date(System.currentTimeMillis());
         Masyarakat masyarakat = inputDropboxFrame.getMasyarakat();
         Kurir kurir = inputDropboxFrame.getKurir();
         Kategori kategori = inputDropboxFrame.getKategori();
         Jenis[] jenis = null;
-        //buatkan validasi ketika index == 0
-        if(inputDropboxFrame.getKategori() != null) {
-            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
-            return;
-        } else if (inputDropboxFrame.getKurir() == null){
-            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
-            return;
-        } else if (inputDropboxFrame.getMasyarakat() == null){
-            inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
-            return;
-        }
+        dropbox = new Dropbox(id, tanggal, masyarakat, kurir, kategori, jenis);
 
-
-            dropbox = new Dropbox(id, tanggal, masyarakat, kurir, kategori, jenis);
+        System.out.println(dropbox.getMasyarakat().getId());
+        System.out.println(dropbox.getKurir().getId());
+        System.out.println(dropbox.getKategori().getId());
         if(dropboxDao.insert(dropbox) <1) {
             inputDropboxFrame.showErrorMessage("Dropbox gagal ditambahkan.");
             return;
@@ -55,5 +61,6 @@ public class DropboxSimpan implements ActionListener {
         inputDropboxFrame.reset();
         dropboxFrame.addDropbox(dropbox);
         inputDropboxFrame.dispose();
+        }
     }
 }
