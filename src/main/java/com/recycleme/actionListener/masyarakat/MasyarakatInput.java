@@ -6,7 +6,6 @@ import com.recycleme.frame.masyarakat.MasyarakatFrame;
 import java.awt.event.*;
 
 public class MasyarakatInput implements ActionListener {
-    private InputMasyarakatFrame inputMasyarakatFrame;
     private MasyarakatFrame masyarakatFrame;
 
     public MasyarakatInput(MasyarakatFrame masyarakatFrame) {
@@ -15,6 +14,7 @@ public class MasyarakatInput implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == masyarakatFrame.getButtonInputMasyarakat()) {
+
             masyarakatFrame.showInputMasyarakatFrame();
         }
     }

@@ -4,6 +4,7 @@ import com.recycleme.dao.MasyarakatDao;
 import com.recycleme.frame.masyarakat.MasyarakatFrame;
 import com.recycleme.model.masyarakat.Masyarakat;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 public class MasyarakatTolak implements ActionListener {
@@ -18,27 +19,34 @@ public class MasyarakatTolak implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == masyarakatFrame.getButtonTolak()) {
-            if(masyarakatFrame.getSelectedMasyarakatId() == -1) {
-                masyarakatFrame.showErrorMessage("Pilih data terlebih dahulu!");
+            int row = masyarakatFrame.getSelectedMasyarakatRow();
+
+            if(row == -1) {
+                masyarakatFrame.showErrorMessage("Pilih masyarakat terlebih dahulu!");
                 return;
             }
 
             if(masyarakatFrame.getSelectedMasyarakatStatusRegistrasi().equals("Disetujui")) {
-                masyarakatFrame.showErrorMessage("Data sudah disetujui!");
+                masyarakatFrame.showErrorMessage("Masyarakat sudah disetujui!");
                 return;
             } else if(masyarakatFrame.getSelectedMasyarakatStatusRegistrasi().equals("Ditolak")) {
-                masyarakatFrame.showErrorMessage("Data sudah ditolak!");
+                masyarakatFrame.showErrorMessage("Masyarakat sudah ditolak!");
                 return;
             }
 
-            int col = masyarakatFrame.getSelectedMasyarakatRow();
-            int row = masyarakatFrame.getSelectedMasyarakatRow();
+            int confirm = JOptionPane.showConfirmDialog(masyarakatFrame, "Apakah anda yakin ingin menolak masyarakat ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.NO_OPTION) {
+                masyarakatFrame.showInfoMessage("Proses dibatalkan!");
+                return;
+            }
+
+            int col = 5;
 
             masyarakat = masyarakatDao.findById(masyarakatFrame.getSelectedMasyarakatId());
             masyarakat.setStatusRegistrasi("Ditolak");
             masyarakatDao.update(masyarakat);
             masyarakatFrame.updateMasyarakat(row, col, masyarakat);
-            masyarakatFrame.showSuccessMessage("Data berhasil ditolak!");
+            masyarakatFrame.showSuccessMessage("Masyarakat berhasil ditolak!");
         }
     }
 }

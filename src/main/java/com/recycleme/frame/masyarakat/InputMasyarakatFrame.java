@@ -7,8 +7,6 @@ import com.recycleme.actionListener.masyarakat.MasyarakatReset;
 import com.recycleme.actionListener.masyarakat.MasyarakatSimpan;
 import com.recycleme.dao.MasyarakatDao;
 
-import static java.lang.Integer.parseInt;
-
 public class InputMasyarakatFrame extends JFrame {
     private JLabel labelFrame;
 

@@ -1,4 +1,15 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ8ÿïµ¹Í1
-x
-java:S1450"VRemove the "dropbox" field and declare it as a local variable in the relevant methods.(³áĞşÿÿÿÿ8¸şÅ¹Í1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ì„Ş×üÿÿÿÿ8ƒÏë‡Î1
+]	java:S125"<This block of commented-out lines of code should be removed.(¹‘¥şùÿÿÿÿ8›Ïë‡Î1
+^
+java:S1128"<Remove this unused import 'com.recycleme.model.kurir.Kurir'.(Ûì‹Óüÿÿÿÿ8›Ïë‡Î1
+b
+java:S1128"FRemove this unused import 'com.recycleme.model.masyarakat.Masyarakat'.(í÷²\8œÏë‡Î1
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8œÏë‡Î1
+R
+java:S1068"0Remove this unused "dropboxFrame" private field.(ûÎòÇøÿÿÿÿ8œÏë‡Î1
+Q
+java:S1068"5Remove this unused "inputDropboxFrame" private field.(‘ëù.8Ïë‡Î1
+K
+java:S1068".Remove this unused "dropboxDao" private field.(œ–ëÎ8Ïë‡Î1

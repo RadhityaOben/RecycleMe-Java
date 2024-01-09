@@ -10,6 +10,7 @@ import com.recycleme.model.kurir.KurirTableModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+
 public class KurirFrame extends JFrame {
     private JLabel labelTitle;
 

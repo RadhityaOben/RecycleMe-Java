@@ -24,18 +24,19 @@ public class DropboxSimpan implements ActionListener {
     }
         @Override
     public void actionPerformed(ActionEvent e) {
-        int id = UUID.randomUUID().hashCode();
-        String nama = inputDropboxFrame.getNama();
-        String alamat = inputDropboxFrame.getAlamat();
-        Masyarakat masyarakat = inputDropboxFrame.getMasyarakat();
-        Kurir kurir = inputDropboxFrame.getKurir();
-        jenis = inputDropboxFrame.getJenis();
-
-        dropbox = new Dropbox(id, nama, alamat, masyarakat, kurir, jenis);
-        inputDropboxFrame.showSuccessMessage("Dropbox berhasil ditambahkan!");
-        inputDropboxFrame.reset();
-        inputDropboxFrame.dispose();
-        dropboxFrame.addDropbox(dropbox);
-        dropboxDao.insert(dropbox);
+        javax.swing.JOptionPane.showMessageDialog(null, "Dropbox berhasil ditambahkan!");
+//        int id = UUID.randomUUID().hashCode();
+//        String nama = inputDropboxFrame.getNama();
+//        String alamat = inputDropboxFrame.getAlamat();
+//        Masyarakat masyarakat = inputDropboxFrame.getMasyarakat();
+//        Kurir kurir = inputDropboxFrame.getKurir();
+//        jenis = inputDropboxFrame.getJenis();
+//
+//        dropbox = new Dropbox(id, nama, alamat, masyarakat, kurir, jenis);
+//        inputDropboxFrame.showSuccessMessage("Dropbox berhasil ditambahkan!");
+//        inputDropboxFrame.reset();
+//        inputDropboxFrame.dispose();
+//        dropboxFrame.addDropbox(dropbox);
+//        dropboxDao.insert(dropbox);
     }
 }

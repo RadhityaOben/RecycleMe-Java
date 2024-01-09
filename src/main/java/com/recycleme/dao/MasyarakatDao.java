@@ -37,7 +37,14 @@ public class MasyarakatDao {
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE masyarakat SET " +
-                            "nama = ?, alamat = ?, email = ?, no_hp = ?, status_registrasi = ?, status_penjemputan = ?, metode_pembayaran = ?, poin = ? " +
+                            "nama = ?, " +
+                            "alamat = ?, " +
+                            "email = ?, " +
+                            "no_hp = ?, " +
+                            "status_registrasi = ?, " +
+                            "status_penjemputan = ?, " +
+                            "metode_pembayaran = ?, " +
+                            "poin = ? " +
                             "WHERE id = ?"
             );
             statement.setString(1, masyarakat.getNama());
@@ -54,6 +61,7 @@ public class MasyarakatDao {
         } catch(Exception e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
@@ -61,6 +69,12 @@ public class MasyarakatDao {
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
             PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM dropbox WHERE id_masyarakat = ?"
+            );
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+
+            statement = connection.prepareStatement(
                     "DELETE FROM masyarakat WHERE id = ?"
             );
             statement.setInt(1, id);
@@ -127,5 +141,30 @@ public class MasyarakatDao {
         }
 
         return list;
+    }
+
+    public static Masyarakat findById(int id) {
+        Masyarakat masyarakat = new Masyarakat();
+        try(Connection connection = MySqlConnection.getInstance().getConnection();) {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM masyarakat WHERE id = ?"
+            );
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                masyarakat.setId(resultSet.getInt("id"));
+                masyarakat.setNama(resultSet.getString("nama"));
+                masyarakat.setAlamat(resultSet.getString("alamat"));
+                masyarakat.setEmail(resultSet.getString("email"));
+                masyarakat.setNoTelp(resultSet.getString("no_hp"));
+                masyarakat.setStatusRegistrasi(resultSet.getString("status_registrasi"));
+                masyarakat.setStatusPenjemputan(resultSet.getString("status_penjemputan"));
+                masyarakat.setMetodePembayaran(resultSet.getString("metode_pembayaran"));
+                masyarakat.setPoin(resultSet.getInt("poin"));
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return masyarakat;
     }
 }

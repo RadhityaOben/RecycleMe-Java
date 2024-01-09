@@ -1,7 +1,5 @@
 package com.recycleme.frame.jenis;
 
-import com.recycleme.actionListener.kategori.KategoriHapus;
-import com.recycleme.actionListener.kategori.KategoriInput;
 import com.recycleme.dao.JenisDao;
 import com.recycleme.model.jenis.Jenis;
 import com.recycleme.model.jenis.JenisTableModel;
@@ -41,11 +39,12 @@ public class JenisFrame extends JFrame {
         this.buttonDeleteJenis = new JButton("Delete Kategori");
         this.buttonDeleteJenis.setBounds(450, 50, 150, 30);
 
-        this.jenisInput = new KategoriInput(this);
-        this.jenisHapus = new KategoriHapus(this, jenisDao);
-
-        this.buttonInputJenis.addActionListener(jenisInput);
-        this.buttonDeleteJenis.addActionListener(jenisHapus);
+        // Komentarin dulu biar jalan
+//        this.jenisInput = new KategoriInput(this);
+//        this.jenisHapus = new KategoriHapus(this, jenisDao);
+//
+//        this.buttonInputJenis.addActionListener(jenisInput);
+//        this.buttonDeleteJenis.addActionListener(jenisHapus);
 
         this.jenisDao = jenisDao;
         this.jenisList = jenisDao.findAll();

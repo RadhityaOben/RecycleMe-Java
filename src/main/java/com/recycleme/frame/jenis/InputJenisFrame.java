@@ -33,9 +33,9 @@ public class InputJenisFrame extends JFrame{
         this.setSize(500, 600);
         kategoriDao = new KategoriDao();
         kategoriFrame = frame;
-
-        KategoriSimpan KategoriSimpanActionListener = new KategoriSimpan(this, kategoriDao, kategoriFrame);
-        KategoriReset KategoriResetActionListener = new KategoriReset(this);
+        // Biarjalan urng komentarin dulu
+//        KategoriSimpan KategoriSimpanActionListener = new KategoriSimpan(this, kategoriDao, kategoriFrame);
+//        KategoriReset KategoriResetActionListener = new KategoriReset(this);
 
         labelFrame = new JLabel("Input Kategori");
         labelFrame.setBounds(50, 10, 300, 30);
@@ -53,9 +53,9 @@ public class InputJenisFrame extends JFrame{
         resetButton = new JButton("Reset");
         resetButton.setBounds(200, 500, 100, 30);
 
-
-        simpanButton.addActionListener(KategoriSimpanActionListener);
-        resetButton.addActionListener(KategoriResetActionListener);
+//        Biar jalna unrang komentarin dulu
+//        simpanButton.addActionListener(KategoriSimpanActionListener);
+//        resetButton.addActionListener(KategoriResetActionListener);
 
         populateJenisKategoriSampahElektronikComboBox();
 
